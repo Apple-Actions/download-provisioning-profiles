@@ -1,10 +1,22 @@
-name: 'Your name here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'Download Apple Provisioning Profiles'
+description: 'Downloads an Apple Provisioning Profiles from the AppStore Connect API'
+author: 'Itty Bitty Apps Pty Ltd'
 inputs:
-  myInput:              # change this
-    description: 'input description here'
-    default: 'default value if applicable'
+  bundle-id:
+    description: 'The bundle identifier of the application.'
+    required: true
+  issuer-id:
+    description: 'The AppStore Connect API Key Issuer Identifier'
+    required: true
+  api-key-id:
+    description: 'The Key ID for AppStore Connect API'
+    required: true
+  api-private-key:
+    description: 'The PKCS8 format Private Key for AppStore Connect API'
+    required: true
 runs:
   using: 'node12'
   main: 'dist/index.js'
+branding:
+  icon: arrow-down-circle
+  color: green

@@ -1,16 +1,47 @@
 import * as core from '@actions/core'
-import {wait} from './wait'
+import * as io from '@actions/io'
+import * as fs from 'fs'
+import * as path from 'path'
+import * as provisioning from './provisioning'
 
 async function run(): Promise<void> {
   try {
-    const ms: string = core.getInput('milliseconds')
-    core.debug(`Waiting ${ms} milliseconds ...`)
+    const bundleId: string = core.getInput('bundle-id')
+    const apiKeyId = core.getInput(`api-key-id`)
+    const apiPrivateKey = core.getInput(`api-private-key`)
+    const issuerId = core.getInput(`issuer-id`)
 
-    core.debug(new Date().toTimeString())
-    await wait(parseInt(ms, 10))
-    core.debug(new Date().toTimeString())
+    const profiles = await provisioning.downloadActiveProvisioningProfiles(
+      apiPrivateKey,
+      issuerId,
+      apiKeyId,
+      bundleId
+    )
 
-    core.setOutput('time', new Date().toTimeString())
+    if (!process.env.HOME) {
+      throw new Error('Environment variable `HOME` is not defined!')
+    }
+
+    for (const profile of profiles) {
+      if (!(profile.attributes.uuid && profile.attributes.profileContent)) {
+        throw new Error(
+          'Profile attributes `uuid` and `profileContent` must be defined!'
+        )
+      }
+
+      const profileFilename = `${profile.attributes.uuid}.mobileprovision`
+      const basePath = path.join(
+        process.env['HOME'],
+        '/Library/MobileDevice/Provisioning Profiles'
+      )
+      await io.mkdirP(basePath)
+      const buffer = Buffer.from(profile.attributes.profileContent, 'base64')
+      const fullPath = path.join(basePath, profileFilename)
+      fs.writeFileSync(fullPath, buffer)
+      core.info(
+        `Wrote ${profile.attributes.profileType} profile '${profile.attributes.name}' to '${fullPath}'.`
+      )
+    }
   } catch (error) {
     core.setFailed(error.message)
   }
