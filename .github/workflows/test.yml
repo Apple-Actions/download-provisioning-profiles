@@ -8,9 +8,25 @@ on: # rebuild any PRs and main branch changes
 
 jobs:
   build: # make sure build/ci work properly
-    runs-on: ubuntu-latest
+    runs-on: macOS-latest
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - run: |
         npm install
         npm run all
+  test:
+    runs-on: macOS-latest
+    steps:
+    - uses: actions/checkout@v2
+    - run: |
+        npm install --production
+    - uses: ./
+      id: provisioning
+      with:
+        bundle-id: codes.orj.Example-iOS
+        profile-type: IOS_APP_STORE
+        issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
+        api-key-id: ${{ secrets.APPSTORE_KEY_ID }}
+        api-private-key: ${{ secrets.APPSTORE_PRIVATE_KEY }}
+    - run: |
+        echo ${{ steps.provisioning.outputs.profiles.*.udid }}

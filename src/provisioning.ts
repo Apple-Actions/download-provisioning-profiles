@@ -2,11 +2,22 @@ import {v1} from 'appstoreconnect'
 import * as v1Ext from './appstoreconnect_ext'
 import jwt from 'jsonwebtoken'
 
+function isActiveProfile(
+  attributes: v1Ext.ProfileAttributes,
+  type?: string
+): boolean {
+  return (
+    attributes.profileState === 'ACTIVE' &&
+    (type ? attributes.profileType === type : true)
+  )
+}
+
 export async function downloadActiveProvisioningProfiles(
   privateKey: jwt.Secret,
   issuerId: string,
   privateKeyId: string,
-  bundleId: string
+  bundleId: string,
+  profileType?: string
 ): Promise<v1Ext.Profile[]> {
   const token = v1.token(privateKey, issuerId, privateKeyId)
   const api = v1(token)
@@ -27,7 +38,7 @@ export async function downloadActiveProvisioningProfiles(
       i =>
         i.type === 'profiles' &&
         profileIds.includes(i.id) &&
-        i.attributes.profileState === 'ACTIVE'
+        isActiveProfile(i.attributes, profileType)
     ) as v1Ext.Profile[] | undefined
 
     if (!(profiles && profiles.length > 0)) {
