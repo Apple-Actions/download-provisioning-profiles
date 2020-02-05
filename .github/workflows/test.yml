@@ -29,4 +29,4 @@ jobs:
         api-key-id: ${{ secrets.APPSTORE_KEY_ID }}
         api-private-key: ${{ secrets.APPSTORE_PRIVATE_KEY }}
     - run: |
-        echo ${{ toJSON(steps.provisioning.outputs.profiles) }}
+        echo ${{ steps.provisioning.outputs.profiles[0].udid }}
