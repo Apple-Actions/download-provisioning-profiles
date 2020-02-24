@@ -486,67 +486,67 @@ function wrappy (fn, cb) {
 
 "use strict";
 
-Object.defineProperty(exports, "__esModule", { value: true });
-const api_1 = __webpack_require__(799);
+Object.defineProperty(exports, '__esModule', { value: true })
+const api_1 = __webpack_require__(799)
 /**
  * Find and list beta build localizations currently associated with apps.
  * @param query
  */
 function listBetaBuildLocalizations(api, query) {
-    return api_1.GET(api, `/betaBuildLocalizations`, { query });
+    return api_1.GET(api, `/betaBuildLocalizations`, { query })
 }
-exports.listBetaBuildLocalizations = listBetaBuildLocalizations;
+exports.listBetaBuildLocalizations = listBetaBuildLocalizations
 /**
  * Get a specific beta build localization resource.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param query
  */
 function readBetaBuildLocalizationInformation(api, id, query) {
-    return api_1.GET(api, `/betaBuildLocalizations/${id}`, { query });
+    return api_1.GET(api, `/betaBuildLocalizations/${id}`, { query })
 }
-exports.readBetaBuildLocalizationInformation = readBetaBuildLocalizationInformation;
+exports.readBetaBuildLocalizationInformation = readBetaBuildLocalizationInformation
 /**
  * Get the build information for a specific beta build localization.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param query
  */
 function readBuildInformationForBetaBuildLocalization(api, id, query) {
-    return api_1.GET(api, `/betaBuildLocalizations/${id}/build`, { query });
+    return api_1.GET(api, `/betaBuildLocalizations/${id}/build`, { query })
 }
-exports.readBuildInformationForBetaBuildLocalization = readBuildInformationForBetaBuildLocalization;
+exports.readBuildInformationForBetaBuildLocalization = readBuildInformationForBetaBuildLocalization
 /**
  * Get a build resource ID for a specific beta build localization.
  * @param id An opaque resource ID that uniquely identifies the resource.
  */
 function getBuildIDForBetaBuildLocalization(api, id) {
-    return api_1.GET(api, `/betaBuildLocalizations/${id}/relationships/build`);
+    return api_1.GET(api, `/betaBuildLocalizations/${id}/relationships/build`)
 }
-exports.getBuildIDForBetaBuildLocalization = getBuildIDForBetaBuildLocalization;
+exports.getBuildIDForBetaBuildLocalization = getBuildIDForBetaBuildLocalization
 /**
  * Create localized What’s New text for a build.
  * @param body
  */
 function createBetaBuildLocalization(api, body) {
-    return api_1.POST(api, `/betaBuildLocalizations`, { body });
+    return api_1.POST(api, `/betaBuildLocalizations`, { body })
 }
-exports.createBetaBuildLocalization = createBetaBuildLocalization;
+exports.createBetaBuildLocalization = createBetaBuildLocalization
 /**
  * Update the localized What’s New text for a specific beta build and locale.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param body
  */
 function modifyBetaBuildLocalization(api, id, body) {
-    return api_1.PATCH(api, `/betaBuildLocalizations/${id}`, { body });
+    return api_1.PATCH(api, `/betaBuildLocalizations/${id}`, { body })
 }
-exports.modifyBetaBuildLocalization = modifyBetaBuildLocalization;
+exports.modifyBetaBuildLocalization = modifyBetaBuildLocalization
 /**
  * Delete a specific beta build localization associated with a build.
  * @param id An opaque resource ID that uniquely identifies the resource.
  */
 function deleteBetaBuildLocalization(api, id) {
-    return api_1.DELETE(api, `/betaBuildLocalizations/${id}`);
+    return api_1.DELETE(api, `/betaBuildLocalizations/${id}`)
 }
-exports.deleteBetaBuildLocalization = deleteBetaBuildLocalization;
+exports.deleteBetaBuildLocalization = deleteBetaBuildLocalization
 
 
 /***/ }),
@@ -790,24 +790,30 @@ module.exports.TimeoutError = TimeoutError;
 
 "use strict";
 
-Object.defineProperty(exports, "__esModule", { value: true });
-const api_1 = __webpack_require__(799);
+Object.defineProperty(exports, '__esModule', { value: true })
+const api_1 = __webpack_require__(799)
 /**
  * Download finance reports filtered by your specified criteria.
  * @param query
  */
 function downloadFinancialReports(api, query) {
-    return api_1.GET(api, '/financeReports', { query, contentType: api_1.ContentType.GZIP });
+    return api_1.GET(api, '/financeReports', {
+        query,
+        contentType: api_1.ContentType.GZIP,
+    })
 }
-exports.downloadFinancialReports = downloadFinancialReports;
+exports.downloadFinancialReports = downloadFinancialReports
 /**
  * Download sales and trends reports filtered by your specified criteria.
  * @param query
  */
 function downloadSalesReports(api, query) {
-    return api_1.GET(api, '/salesReports', { query, contentType: api_1.ContentType.GZIP });
+    return api_1.GET(api, '/salesReports', {
+        query,
+        contentType: api_1.ContentType.GZIP,
+    })
 }
-exports.downloadSalesReports = downloadSalesReports;
+exports.downloadSalesReports = downloadSalesReports
 
 
 /***/ }),
@@ -1453,51 +1459,51 @@ module.exports = async options => {
 
 "use strict";
 
-Object.defineProperty(exports, "__esModule", { value: true });
-const api_1 = __webpack_require__(799);
+Object.defineProperty(exports, '__esModule', { value: true })
+const api_1 = __webpack_require__(799)
 /**
  * Find and list beta app review details for all apps.
  * @param query
  */
 function listBetaAppReviewDetails(api, query) {
-    return api_1.GET(api, '/betaAppReviewDetails', { query });
+    return api_1.GET(api, '/betaAppReviewDetails', { query })
 }
-exports.listBetaAppReviewDetails = listBetaAppReviewDetails;
+exports.listBetaAppReviewDetails = listBetaAppReviewDetails
 /**
  * Find and list beta app review details for all apps.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param query
  */
 function readBetaAppReviewDetailInformation(api, id, query) {
-    return api_1.GET(api, `/betaAppReviewDetails/${id}`, { query });
+    return api_1.GET(api, `/betaAppReviewDetails/${id}`, { query })
 }
-exports.readBetaAppReviewDetailInformation = readBetaAppReviewDetailInformation;
+exports.readBetaAppReviewDetailInformation = readBetaAppReviewDetailInformation
 /**
  * Get the app information for a specific beta app review details resource.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param query
  */
 function readAppInformationForBetaAppReviewDetail(api, id, query) {
-    return api_1.GET(api, `/betaAppReviewDetails/${id}/app`, { query });
+    return api_1.GET(api, `/betaAppReviewDetails/${id}/app`, { query })
 }
-exports.readAppInformationForBetaAppReviewDetail = readAppInformationForBetaAppReviewDetail;
+exports.readAppInformationForBetaAppReviewDetail = readAppInformationForBetaAppReviewDetail
 /**
  * Get the app resource ID associated with an app review detail.
  * @param id An opaque resource ID that uniquely identifies the resource.
  */
 function getAppResourceIDForBetaAppReviewDetailsResource(api, id) {
-    return api_1.GET(api, `/betaAppReviewDetails/${id}/relationships/app`);
+    return api_1.GET(api, `/betaAppReviewDetails/${id}/relationships/app`)
 }
-exports.getAppResourceIDForBetaAppReviewDetailsResource = getAppResourceIDForBetaAppReviewDetailsResource;
+exports.getAppResourceIDForBetaAppReviewDetailsResource = getAppResourceIDForBetaAppReviewDetailsResource
 /**
  * Update the details for a specific app's beta app review.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param body
  */
 function modifyBetaAppReviewDetail(api, id, body) {
-    return api_1.PATCH(api, `/betaAppReviewDetails/${id}`, { body });
+    return api_1.PATCH(api, `/betaAppReviewDetails/${id}`, { body })
 }
-exports.modifyBetaAppReviewDetail = modifyBetaAppReviewDetail;
+exports.modifyBetaAppReviewDetail = modifyBetaAppReviewDetail
 
 
 /***/ }),
@@ -2195,138 +2201,146 @@ module.exports = function jwa(algorithm) {
 
 "use strict";
 
-Object.defineProperty(exports, "__esModule", { value: true });
-const api_1 = __webpack_require__(799);
+Object.defineProperty(exports, '__esModule', { value: true })
+const api_1 = __webpack_require__(799)
 /**
  * Create a beta tester assigned to a group, a build, or an app.
  * @param body
  */
 function createBetaTester(api, body) {
-    return api_1.POST(api, `/betaTesters`, { body });
+    return api_1.POST(api, `/betaTesters`, { body })
 }
-exports.createBetaTester = createBetaTester;
+exports.createBetaTester = createBetaTester
 /**
  * Remove a beta tester's ability to test all apps.
  * @param id An opaque resource ID that uniquely identifies the resource.
  */
 function deleteBetaTester(api, id) {
-    return api_1.DELETE(api, `/betaTesters/${id}`);
+    return api_1.DELETE(api, `/betaTesters/${id}`)
 }
-exports.deleteBetaTester = deleteBetaTester;
+exports.deleteBetaTester = deleteBetaTester
 /**
  * Find and list beta testers for all apps, builds, and beta groups.
  * @param query
  */
 function listBetaTesters(api, query) {
-    return api_1.GET(api, `/betaTesters`, { query });
+    return api_1.GET(api, `/betaTesters`, { query })
 }
-exports.listBetaTesters = listBetaTesters;
+exports.listBetaTesters = listBetaTesters
 /**
  * Get a specific beta tester.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param query
  */
 function readBetaTesterInformation(api, id, query) {
-    return api_1.GET(api, `/betaTesters/${id}`, { query });
+    return api_1.GET(api, `/betaTesters/${id}`, { query })
 }
-exports.readBetaTesterInformation = readBetaTesterInformation;
+exports.readBetaTesterInformation = readBetaTesterInformation
 /**
  * Add one or more beta testers to a specific beta group.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param body
  */
 function addBetaTesterToBetaGroups(api, id, body) {
-    return api_1.POST(api, `/betaTesters/${id}/relationships/betaGroups`, { body });
+    return api_1.POST(api, `/betaTesters/${id}/relationships/betaGroups`, {
+        body,
+    })
 }
-exports.addBetaTesterToBetaGroups = addBetaTesterToBetaGroups;
+exports.addBetaTesterToBetaGroups = addBetaTesterToBetaGroups
 /**
  * Remove a specific beta tester from one or more beta groups, revoking their access to test builds associated with those groups.
  */
 function removeBetaTesterFromBetaGroups(api, id, body) {
-    return api_1.DELETE(api, `/betaTesters/${id}/relationships/betaGroups`, { body });
+    return api_1.DELETE(api, `/betaTesters/${id}/relationships/betaGroups`, {
+        body,
+    })
 }
-exports.removeBetaTesterFromBetaGroups = removeBetaTesterFromBetaGroups;
+exports.removeBetaTesterFromBetaGroups = removeBetaTesterFromBetaGroups
 /**
  * Individually assign a beta tester to a build.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param body
  */
 function individuallyAssignBetaTesterToBuilds(api, id, body) {
-    return api_1.POST(api, `/betaTesters/${id}/relationships/builds`, { body });
+    return api_1.POST(api, `/betaTesters/${id}/relationships/builds`, { body })
 }
-exports.individuallyAssignBetaTesterToBuilds = individuallyAssignBetaTesterToBuilds;
+exports.individuallyAssignBetaTesterToBuilds = individuallyAssignBetaTesterToBuilds
 /**
  * Remove an individually assigned beta tester's ability to test a build.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param body
  */
 function individuallyUnassignBetaTesterFromBuilds(api, id, body) {
-    return api_1.DELETE(api, `/betaTesters/${id}/relationships/builds`, { body });
+    return api_1.DELETE(api, `/betaTesters/${id}/relationships/builds`, {
+        body,
+    })
 }
-exports.individuallyUnassignBetaTesterFromBuilds = individuallyUnassignBetaTesterFromBuilds;
+exports.individuallyUnassignBetaTesterFromBuilds = individuallyUnassignBetaTesterFromBuilds
 /**
  * Remove a specific beta tester's access to test any builds of one or more apps.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param body
  */
 function removeBetaTesterAccessToApps(api, id, body) {
-    return api_1.DELETE(api, `/betaTesters/${id}/relationships/apps`, { body });
+    return api_1.DELETE(api, `/betaTesters/${id}/relationships/apps`, { body })
 }
-exports.removeBetaTesterAccessToApps = removeBetaTesterAccessToApps;
+exports.removeBetaTesterAccessToApps = removeBetaTesterAccessToApps
 /**
  * Get a list of apps that a beta tester can test.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param query
  */
 function listAllAppsForBetaTester(api, id, query) {
-    return api_1.GET(api, `/betaTesters/${id}/apps`, { query });
+    return api_1.GET(api, `/betaTesters/${id}/apps`, { query })
 }
-exports.listAllAppsForBetaTester = listAllAppsForBetaTester;
+exports.listAllAppsForBetaTester = listAllAppsForBetaTester
 /**
  * Get a list of app resource IDs associated with a beta tester.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param query
  */
 function getAllAppResourceIDsForBetaTester(api, id, query) {
-    return api_1.GET(api, `/betaTesters/${id}/relationships/apps`, { query });
+    return api_1.GET(api, `/betaTesters/${id}/relationships/apps`, { query })
 }
-exports.getAllAppResourceIDsForBetaTester = getAllAppResourceIDsForBetaTester;
+exports.getAllAppResourceIDsForBetaTester = getAllAppResourceIDsForBetaTester
 /**
  * Get a list of builds individually assigned to a specific beta tester.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param query
  */
 function listAllBuildsIndividuallyAssignedToBetaTester(api, id, query) {
-    return api_1.GET(api, `/betaTesters/${id}/builds`, { query });
+    return api_1.GET(api, `/betaTesters/${id}/builds`, { query })
 }
-exports.listAllBuildsIndividuallyAssignedToBetaTester = listAllBuildsIndividuallyAssignedToBetaTester;
+exports.listAllBuildsIndividuallyAssignedToBetaTester = listAllBuildsIndividuallyAssignedToBetaTester
 /**
  * Get a list of build resource IDs individually assigned to a specific beta tester.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param query
  */
 function getAllIDsForBuildsIndividuallyAssignedToBetaTester(api, id, query) {
-    return api_1.GET(api, `/betaTesters/${id}/relationships/builds`, { query });
+    return api_1.GET(api, `/betaTesters/${id}/relationships/builds`, { query })
 }
-exports.getAllIDsForBuildsIndividuallyAssignedToBetaTester = getAllIDsForBuildsIndividuallyAssignedToBetaTester;
+exports.getAllIDsForBuildsIndividuallyAssignedToBetaTester = getAllIDsForBuildsIndividuallyAssignedToBetaTester
 /**
  * Get a list of beta groups that contain a specific beta tester.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param query
  */
 function listAllBetaGroupsForBetaTester(api, id, query) {
-    return api_1.GET(api, `/betaTesters/${id}/betaGroups`, { query });
+    return api_1.GET(api, `/betaTesters/${id}/betaGroups`, { query })
 }
-exports.listAllBetaGroupsForBetaTester = listAllBetaGroupsForBetaTester;
+exports.listAllBetaGroupsForBetaTester = listAllBetaGroupsForBetaTester
 /**
  * Get a list of group resource IDs associated with a beta tester.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param query
  */
 function getAllBetaGroupIDsForBetaTesterGroups(api, id, query) {
-    return api_1.GET(api, `/betaTesters/${id}/relationships/betaGroups`, { query });
+    return api_1.GET(api, `/betaTesters/${id}/relationships/betaGroups`, {
+        query,
+    })
 }
-exports.getAllBetaGroupIDsForBetaTesterGroups = getAllBetaGroupIDsForBetaTesterGroups;
+exports.getAllBetaGroupIDsForBetaTesterGroups = getAllBetaGroupIDsForBetaTesterGroups
 
 
 /***/ }),
@@ -2975,9 +2989,9 @@ module.exports = class CachePolicy {
                 // contains a max-age response directive, or
                 // contains a s-maxage response directive and the cache is shared, or
                 // contains a public response directive.
-                this._rescc.public ||
                 this._rescc['max-age'] ||
-                this._rescc['s-maxage'] ||
+                (this._isShared && this._rescc['s-maxage']) ||
+                this._rescc.public ||
                 // has a status code that is defined as cacheable by default
                 statusCodeCacheableByDefault.indexOf(this._status) !== -1)
         );
@@ -3137,12 +3151,12 @@ module.exports = class CachePolicy {
     }
 
     _serverDate() {
-        const dateValue = Date.parse(this._resHeaders.date);
-        if (isFinite(dateValue)) {
+        const serverDate = Date.parse(this._resHeaders.date);
+        if (isFinite(serverDate)) {
             const maxClockDrift = 8 * 3600 * 1000;
-            const clockDrift = Math.abs(this._responseTime - dateValue);
+            const clockDrift = Math.abs(this._responseTime - serverDate);
             if (clockDrift < maxClockDrift) {
-                return dateValue;
+                return serverDate;
             }
         }
         return this._responseTime;
@@ -3214,22 +3228,22 @@ module.exports = class CachePolicy {
 
         const defaultMinTtl = this._rescc.immutable ? this._immutableMinTtl : 0;
 
-        const dateValue = this._serverDate();
+        const serverDate = this._serverDate();
         if (this._resHeaders.expires) {
             const expires = Date.parse(this._resHeaders.expires);
             // A cache recipient MUST interpret invalid date formats, especially the value "0", as representing a time in the past (i.e., "already expired").
-            if (Number.isNaN(expires) || expires < dateValue) {
+            if (Number.isNaN(expires) || expires < serverDate) {
                 return 0;
             }
-            return Math.max(defaultMinTtl, (expires - dateValue) / 1000);
+            return Math.max(defaultMinTtl, (expires - serverDate) / 1000);
         }
 
         if (this._resHeaders['last-modified']) {
             const lastModified = Date.parse(this._resHeaders['last-modified']);
-            if (isFinite(lastModified) && dateValue > lastModified) {
+            if (isFinite(lastModified) && serverDate > lastModified) {
                 return Math.max(
                     defaultMinTtl,
-                    ((dateValue - lastModified) / 1000) * this._cacheHeuristic
+                    ((serverDate - lastModified) / 1000) * this._cacheHeuristic
                 );
             }
         }
@@ -3455,16 +3469,8 @@ module.exports = class CachePolicy {
 
 "use strict";
 
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
-    return result;
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const appstoreconnect_1 = __webpack_require__(626);
-const v1Ext = __importStar(__webpack_require__(940));
 function isActiveProfile(attributes, type) {
     return (attributes.profileState === 'ACTIVE' &&
         (type ? attributes.profileType === type : true));
@@ -3473,7 +3479,7 @@ async function downloadActiveProvisioningProfiles(privateKey, issuerId, privateK
     var _a;
     const token = appstoreconnect_1.v1.token(privateKey, issuerId, privateKeyId);
     const api = appstoreconnect_1.v1(token);
-    const bundleIds = await v1Ext.listBundleIds(api, {
+    const bundleIds = await appstoreconnect_1.v1.provisioning.listBundleIds(api, {
         filter: { identifier: [bundleId] },
         include: ['profiles']
     });
@@ -3680,51 +3686,51 @@ exports.parse = function (s) {
 
 "use strict";
 
-Object.defineProperty(exports, "__esModule", { value: true });
-const api_1 = __webpack_require__(799);
+Object.defineProperty(exports, '__esModule', { value: true })
+const api_1 = __webpack_require__(799)
 /**
  * Find and list beta license agreements for all apps.
  * @param query
  */
 function listBetaLicenseAgreements(api, query) {
-    return api_1.GET(api, `/betaLicenseAgreements`, { query });
+    return api_1.GET(api, `/betaLicenseAgreements`, { query })
 }
-exports.listBetaLicenseAgreements = listBetaLicenseAgreements;
+exports.listBetaLicenseAgreements = listBetaLicenseAgreements
 /**
  * Get a specific beta license agreement.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param query
  */
 function readBetaLicenseAgreementInformation(api, id, query) {
-    return api_1.GET(api, `/betaLicenseAgreements/${id}`, { query });
+    return api_1.GET(api, `/betaLicenseAgreements/${id}`, { query })
 }
-exports.readBetaLicenseAgreementInformation = readBetaLicenseAgreementInformation;
+exports.readBetaLicenseAgreementInformation = readBetaLicenseAgreementInformation
 /**
  * Get the app information for a specific beta license agreement.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param query
  */
 function readAppInformationForBetaLicenseAgreement(api, id, query) {
-    return api_1.GET(api, `/betaLicenseAgreements/${id}/app`, { query });
+    return api_1.GET(api, `/betaLicenseAgreements/${id}/app`, { query })
 }
-exports.readAppInformationForBetaLicenseAgreement = readAppInformationForBetaLicenseAgreement;
+exports.readAppInformationForBetaLicenseAgreement = readAppInformationForBetaLicenseAgreement
 /**
  * Get the app resource ID for a specific beta license agreement.
  * @param id An opaque resource ID that uniquely identifies the resource.
  */
 function getAppResourceIDForBetaLicenseAgreement(api, id) {
-    return api_1.GET(api, `/betaLicenseAgreements/${id}/relationships/app`);
+    return api_1.GET(api, `/betaLicenseAgreements/${id}/relationships/app`)
 }
-exports.getAppResourceIDForBetaLicenseAgreement = getAppResourceIDForBetaLicenseAgreement;
+exports.getAppResourceIDForBetaLicenseAgreement = getAppResourceIDForBetaLicenseAgreement
 /**
  * Update the text for your beta license agreement.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param body
  */
 function modifyBetaLicenseAgreement(api, id, body) {
-    return api_1.PATCH(api, `/betaLicenseAgreements/${id}`, { body });
+    return api_1.PATCH(api, `/betaLicenseAgreements/${id}`, { body })
 }
-exports.modifyBetaLicenseAgreement = modifyBetaLicenseAgreement;
+exports.modifyBetaLicenseAgreement = modifyBetaLicenseAgreement
 
 
 /***/ }),
@@ -5272,30 +5278,35 @@ function coerce (version) {
 
 "use strict";
 
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
-    return result;
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const api = __importStar(__webpack_require__(799));
-const auth = __importStar(__webpack_require__(498));
-const routes = __importStar(__webpack_require__(850));
-const V1_BASEURL = 'https://api.appstoreconnect.apple.com/v1';
+var __importStar =
+    (this && this.__importStar) ||
+    function(mod) {
+        if (mod && mod.__esModule) return mod
+        var result = {}
+        if (mod != null)
+            for (var k in mod)
+                if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k]
+        result['default'] = mod
+        return result
+    }
+Object.defineProperty(exports, '__esModule', { value: true })
+const api = __importStar(__webpack_require__(799))
+const auth = __importStar(__webpack_require__(498))
+const routes = __importStar(__webpack_require__(850))
+const V1_BASEURL = 'https://api.appstoreconnect.apple.com/v1'
 function v1(token) {
-    return api.makeAPI(V1_BASEURL, token);
+    return api.makeAPI(V1_BASEURL, token)
 }
-exports.v1 = v1;
-(function (v1) {
-    v1.testflight = routes.testflight;
-    v1.users = routes.users;
-    v1.userInvitations = routes.userInvitations;
-    v1.financeReports = routes.financeReports;
-    v1.token = auth.token;
-    v1.tokenAsync = auth.tokenAsync;
-})(v1 = exports.v1 || (exports.v1 = {}));
+exports.v1 = v1
+;(function(v1) {
+    v1.provisioning = routes.provisioning
+    v1.testflight = routes.testflight
+    v1.users = routes.users
+    v1.userInvitations = routes.userInvitations
+    v1.financeReports = routes.financeReports
+    v1.token = auth.token
+    v1.tokenAsync = auth.tokenAsync
+})((v1 = exports.v1 || (exports.v1 = {})))
 
 
 /***/ }),
@@ -5652,51 +5663,51 @@ module.exports = VerifyStream;
 
 "use strict";
 
-Object.defineProperty(exports, "__esModule", { value: true });
-const api_1 = __webpack_require__(799);
+Object.defineProperty(exports, '__esModule', { value: true })
+const api_1 = __webpack_require__(799)
 /**
  * Find and list build beta details for all builds.
  * @param query
  */
 function listBuildBetaDetails(api, query) {
-    return api_1.GET(api, `/buildBetaDetails`, { query });
+    return api_1.GET(api, `/buildBetaDetails`, { query })
 }
-exports.listBuildBetaDetails = listBuildBetaDetails;
+exports.listBuildBetaDetails = listBuildBetaDetails
 /**
  * Get a specific build beta details resource.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param query
  */
 function readBuildBetaDetailInformation(api, id, query) {
-    return api_1.GET(api, `/buildBetaDetails/${id}`, { query });
+    return api_1.GET(api, `/buildBetaDetails/${id}`, { query })
 }
-exports.readBuildBetaDetailInformation = readBuildBetaDetailInformation;
+exports.readBuildBetaDetailInformation = readBuildBetaDetailInformation
 /**
  * Get the build information for a specific build beta details resource.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param query
  */
 function readBuildInformationForBuildBetaDetail(api, id, query) {
-    return api_1.GET(api, `/buildBetaDetails/${id}/build`, { query });
+    return api_1.GET(api, `/buildBetaDetails/${id}/build`, { query })
 }
-exports.readBuildInformationForBuildBetaDetail = readBuildInformationForBuildBetaDetail;
+exports.readBuildInformationForBuildBetaDetail = readBuildInformationForBuildBetaDetail
 /**
  * Get the build resource ID for a specific build beta detail.
  * @param id An opaque resource ID that uniquely identifies the resource.
  */
 function getBuildIDForBuildBetaDetail(api, id) {
-    return api_1.GET(api, `/buildBetaDetails/${id}/relationships/build`);
+    return api_1.GET(api, `/buildBetaDetails/${id}/relationships/build`)
 }
-exports.getBuildIDForBuildBetaDetail = getBuildIDForBuildBetaDetail;
+exports.getBuildIDForBuildBetaDetail = getBuildIDForBuildBetaDetail
 /**
  * Update beta test details for a specific build.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param body
  */
 function modifyBuildBetaDetail(api, id, body) {
-    return api_1.PATCH(api, `/buildBetaDetails/${id}`, { body });
+    return api_1.PATCH(api, `/buildBetaDetails/${id}`, { body })
 }
-exports.modifyBuildBetaDetail = modifyBuildBetaDetail;
+exports.modifyBuildBetaDetail = modifyBuildBetaDetail
 
 
 /***/ }),
@@ -13056,67 +13067,67 @@ module.exports = cloneResponse;
 
 "use strict";
 
-Object.defineProperty(exports, "__esModule", { value: true });
-const api_1 = __webpack_require__(799);
+Object.defineProperty(exports, '__esModule', { value: true })
+const api_1 = __webpack_require__(799)
 /**
  * Find and list beta app localizations for all apps and locales.
  * @param query
  */
 function listBetaAppLocalizations(api, query) {
-    return api_1.GET(api, `/betaAppLocalizations`, { query });
+    return api_1.GET(api, `/betaAppLocalizations`, { query })
 }
-exports.listBetaAppLocalizations = listBetaAppLocalizations;
+exports.listBetaAppLocalizations = listBetaAppLocalizations
 /**
  * Get localized beta app information for a specific app and locale.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param query
  */
 function readBetaAppLocalizationInformation(api, id, query) {
-    return api_1.GET(api, `/betaAppLocalizations/${id}`, { query });
+    return api_1.GET(api, `/betaAppLocalizations/${id}`, { query })
 }
-exports.readBetaAppLocalizationInformation = readBetaAppLocalizationInformation;
+exports.readBetaAppLocalizationInformation = readBetaAppLocalizationInformation
 /**
  * Get the app information associated with a specific beta app localization.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param query
  */
 function readAppInformationForBetaAppLocalization(api, id, query) {
-    return api_1.GET(api, `/betaAppLocalizations/${id}/app`, { query });
+    return api_1.GET(api, `/betaAppLocalizations/${id}/app`, { query })
 }
-exports.readAppInformationForBetaAppLocalization = readAppInformationForBetaAppLocalization;
+exports.readAppInformationForBetaAppLocalization = readAppInformationForBetaAppLocalization
 /**
  * Get the app resource ID for a specified beta app localization.
  * @param id An opaque resource ID that uniquely identifies the resource.
  */
 function getAppResourceIDForBetaAppLocalization(api, id) {
-    return api_1.GET(api, `/betaAppLocalizations/${id}/relationships/app`);
+    return api_1.GET(api, `/betaAppLocalizations/${id}/relationships/app`)
 }
-exports.getAppResourceIDForBetaAppLocalization = getAppResourceIDForBetaAppLocalization;
+exports.getAppResourceIDForBetaAppLocalization = getAppResourceIDForBetaAppLocalization
 /**
  * Create localized descriptive information for an app.
  * @param body
  */
 function createBetaAppLocalization(api, body) {
-    return api_1.POST(api, `/betaAppLocalizations`, { body });
+    return api_1.POST(api, `/betaAppLocalizations`, { body })
 }
-exports.createBetaAppLocalization = createBetaAppLocalization;
+exports.createBetaAppLocalization = createBetaAppLocalization
 /**
  * Update the localized What’s New text for a specific app and locale.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param body
  */
 function modifyBetaAppLocalization(api, id, body) {
-    return api_1.PATCH(api, `/betaAppLocalizations/${id}`, { body });
+    return api_1.PATCH(api, `/betaAppLocalizations/${id}`, { body })
 }
-exports.modifyBetaAppLocalization = modifyBetaAppLocalization;
+exports.modifyBetaAppLocalization = modifyBetaAppLocalization
 /**
  * Delete a beta app localization associated with an app.
  * @param id An opaque resource ID that uniquely identifies the resource.
  */
 function deleteBetaAppLocalization(api, id) {
-    return api_1.DELETE(api, `/betaAppLocalizations/${id}`);
+    return api_1.DELETE(api, `/betaAppLocalizations/${id}`)
 }
-exports.deleteBetaAppLocalization = deleteBetaAppLocalization;
+exports.deleteBetaAppLocalization = deleteBetaAppLocalization
 
 
 /***/ }),
@@ -13426,54 +13437,58 @@ module.exports = function (payload, secretOrPrivateKey, options, callback) {
 
 "use strict";
 
-Object.defineProperty(exports, "__esModule", { value: true });
-const api_1 = __webpack_require__(799);
+Object.defineProperty(exports, '__esModule', { value: true })
+const api_1 = __webpack_require__(799)
 /**
  * Find and list all available app encryption declarations.
  * @param query
  */
 function listAppEncryptionDeclarations(api, query) {
-    return api_1.GET(api, `/appEncryptionDeclarations`, { query });
+    return api_1.GET(api, `/appEncryptionDeclarations`, { query })
 }
-exports.listAppEncryptionDeclarations = listAppEncryptionDeclarations;
+exports.listAppEncryptionDeclarations = listAppEncryptionDeclarations
 /**
  * Get information about a specific app encryption declaration.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param query
  */
 function readAppEncryptionDeclarationInformation(api, id, query) {
-    return api_1.GET(api, `/appEncryptionDeclarations/${id}`, { query });
+    return api_1.GET(api, `/appEncryptionDeclarations/${id}`, { query })
 }
-exports.readAppEncryptionDeclarationInformation = readAppEncryptionDeclarationInformation;
+exports.readAppEncryptionDeclarationInformation = readAppEncryptionDeclarationInformation
 /**
  * Get the app information from a specific app encryption declaration.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param query
  */
 function readAppInformationForAppEncryptionDeclaration(api, id, query) {
-    return api_1.GET(api, `/appEncryptionDeclarations/${id}/app`, { query });
+    return api_1.GET(api, `/appEncryptionDeclarations/${id}/app`, { query })
 }
-exports.readAppInformationForAppEncryptionDeclaration = readAppInformationForAppEncryptionDeclaration;
+exports.readAppInformationForAppEncryptionDeclaration = readAppInformationForAppEncryptionDeclaration
 /**
  * Get the app resource ID associated with a specific app encryption declaration.
  * @param id An opaque resource ID that uniquely identifies the resource.
 
  */
 function getAppResourceIDForAppEncryptionDeclaration(api, id) {
-    return api_1.GET(api, `/appEncryptionDeclarations/${id}/relationships/app`);
+    return api_1.GET(api, `/appEncryptionDeclarations/${id}/relationships/app`)
 }
-exports.getAppResourceIDForAppEncryptionDeclaration = getAppResourceIDForAppEncryptionDeclaration;
+exports.getAppResourceIDForAppEncryptionDeclaration = getAppResourceIDForAppEncryptionDeclaration
 /**
  * Assign one or more builds to an app encryption declaration.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param body
  */
 function assignBuildsToAppEncryptionDeclaration(api, id, body) {
-    return api_1.POST(api, `/appEncryptionDeclarations/${id}/relationships/builds`, {
-        body,
-    });
+    return api_1.POST(
+        api,
+        `/appEncryptionDeclarations/${id}/relationships/builds`,
+        {
+            body,
+        }
+    )
 }
-exports.assignBuildsToAppEncryptionDeclaration = assignBuildsToAppEncryptionDeclaration;
+exports.assignBuildsToAppEncryptionDeclaration = assignBuildsToAppEncryptionDeclaration
 
 
 /***/ }),
@@ -13490,139 +13505,145 @@ module.exports = require("assert");
 
 "use strict";
 
-Object.defineProperty(exports, "__esModule", { value: true });
-const api_1 = __webpack_require__(799);
+Object.defineProperty(exports, '__esModule', { value: true })
+const api_1 = __webpack_require__(799)
 /**
  * Create a beta group associated with an app, optionally enabling TestFlight public links.
  * @param body
  */
 function createBetaGroup(api, body) {
-    return api_1.POST(api, `/betaGroups`, { body });
+    return api_1.POST(api, `/betaGroups`, { body })
 }
-exports.createBetaGroup = createBetaGroup;
+exports.createBetaGroup = createBetaGroup
 /**
  * Modify a beta group's metadata, including changing its Testflight public link status.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param body
  */
 function modifyBetaGroup(api, id, body) {
-    return api_1.PATCH(api, `/betaGroups/${id}`, { body });
+    return api_1.PATCH(api, `/betaGroups/${id}`, { body })
 }
-exports.modifyBetaGroup = modifyBetaGroup;
+exports.modifyBetaGroup = modifyBetaGroup
 /**
  * Delete a beta group and remove beta tester access to associated builds.
  * @param id An opaque resource ID that uniquely identifies the resource.
  */
 function deleteBetaGroup(api, id) {
-    return api_1.DELETE(api, `/betaGroups/${id}`);
+    return api_1.DELETE(api, `/betaGroups/${id}`)
 }
-exports.deleteBetaGroup = deleteBetaGroup;
+exports.deleteBetaGroup = deleteBetaGroup
 /**
  * Find and list beta groups for all apps.
  * @param query
  */
 function listBetaGroups(api, query) {
-    return api_1.GET(api, `/betaGroups`, { query });
+    return api_1.GET(api, `/betaGroups`, { query })
 }
-exports.listBetaGroups = listBetaGroups;
+exports.listBetaGroups = listBetaGroups
 /**
  * Get a specific beta group.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param query
  */
 function readBetaGroupInformation(api, id, query) {
-    return api_1.GET(api, `/betaGroups/${id}`, { query });
+    return api_1.GET(api, `/betaGroups/${id}`, { query })
 }
-exports.readBetaGroupInformation = readBetaGroupInformation;
+exports.readBetaGroupInformation = readBetaGroupInformation
 /**
  * Get the app information for a specific beta group.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param query
  */
 function readAppInformationForBetaGroup(api, id, query) {
-    return api_1.GET(api, `/betaGroups/${id}/app`, { query });
+    return api_1.GET(api, `/betaGroups/${id}/app`, { query })
 }
-exports.readAppInformationForBetaGroup = readAppInformationForBetaGroup;
+exports.readAppInformationForBetaGroup = readAppInformationForBetaGroup
 /**
  * Get the app resource ID for a specific beta group.
  * @param id An opaque resource ID that uniquely identifies the resource.
  */
 function getAppResourceIDForBetaGroup(api, id) {
-    return api_1.GET(api, `/betaGroups/${id}/relationships/app`);
+    return api_1.GET(api, `/betaGroups/${id}/relationships/app`)
 }
-exports.getAppResourceIDForBetaGroup = getAppResourceIDForBetaGroup;
+exports.getAppResourceIDForBetaGroup = getAppResourceIDForBetaGroup
 /**
  * Add a specific beta tester to one or more beta groups for beta testing.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param body
  */
 function addBetaTestersToBetaGroup(api, id, body) {
-    return api_1.POST(api, `/betaGroups/${id}/relationships/betaTesters`, { body });
+    return api_1.POST(api, `/betaGroups/${id}/relationships/betaTesters`, {
+        body,
+    })
 }
-exports.addBetaTestersToBetaGroup = addBetaTestersToBetaGroup;
+exports.addBetaTestersToBetaGroup = addBetaTestersToBetaGroup
 /**
  * Remove a specific beta tester from a one or more beta groups, revoking their access to test builds associated with those groups.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param body
  */
 function removeBetaTestersFromBetaGroup(api, id, body) {
-    return api_1.DELETE(api, `/betaGroups/${id}/relationships/betaTesters`, { body });
+    return api_1.DELETE(api, `/betaGroups/${id}/relationships/betaTesters`, {
+        body,
+    })
 }
-exports.removeBetaTestersFromBetaGroup = removeBetaTestersFromBetaGroup;
+exports.removeBetaTestersFromBetaGroup = removeBetaTestersFromBetaGroup
 /**
  * Associate builds with a beta group to enable the group to test the builds.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param body
  */
 function addBuildsToBetaGroup(api, id, body) {
-    return api_1.POST(api, `/betaGroups/${id}/relationships/builds`, { body });
+    return api_1.POST(api, `/betaGroups/${id}/relationships/builds`, { body })
 }
-exports.addBuildsToBetaGroup = addBuildsToBetaGroup;
+exports.addBuildsToBetaGroup = addBuildsToBetaGroup
 /**
  * Remove access to test one or more builds from beta testers in a specific beta group.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param body
  */
 function removeBuildsFromBetaGroup(api, id, body) {
-    return api_1.DELETE(api, `/betaGroups/${id}/relationships/builds`, { body });
+    return api_1.DELETE(api, `/betaGroups/${id}/relationships/builds`, { body })
 }
-exports.removeBuildsFromBetaGroup = removeBuildsFromBetaGroup;
+exports.removeBuildsFromBetaGroup = removeBuildsFromBetaGroup
 /**
  * Get a list of builds associated with a specific beta group.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param query
  */
 function listAllBuildsForBetaGroup(api, id, query) {
-    return api_1.GET(api, `/betaGroups/${id}/builds`, { query });
+    return api_1.GET(api, `/betaGroups/${id}/builds`, { query })
 }
-exports.listAllBuildsForBetaGroup = listAllBuildsForBetaGroup;
+exports.listAllBuildsForBetaGroup = listAllBuildsForBetaGroup
 /**
  * Get a list of build resource IDs in a specific beta group.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param query
  */
 function getAllBuildIDsForBetaGroup(api, id, query) {
-    return api_1.GET(api, `/betaGroups/${id}/relationships/builds`, { query });
+    return api_1.GET(api, `/betaGroups/${id}/relationships/builds`, { query })
 }
-exports.getAllBuildIDsForBetaGroup = getAllBuildIDsForBetaGroup;
+exports.getAllBuildIDsForBetaGroup = getAllBuildIDsForBetaGroup
 /**
  * Get a list of beta testers contained in a specific beta group.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param query
  */
 function listAllBetaTestersForBetaGroup(api, id, query) {
-    return api_1.GET(api, `/betaGroups/${id}/betaTesters`, { query });
+    return api_1.GET(api, `/betaGroups/${id}/betaTesters`, { query })
 }
-exports.listAllBetaTestersForBetaGroup = listAllBetaTestersForBetaGroup;
+exports.listAllBetaTestersForBetaGroup = listAllBetaTestersForBetaGroup
 /**
  * Get a list of the beta tester resource IDs in a specific beta group.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param query
  */
 function getAllBetaTesterIDsForBetaGroup(api, id, query) {
-    return api_1.GET(api, `/betaGroups/${id}/relationships/betaTesters`, { query });
+    return api_1.GET(api, `/betaGroups/${id}/relationships/betaTesters`, {
+        query,
+    })
 }
-exports.getAllBetaTesterIDsForBetaGroup = getAllBetaTesterIDsForBetaGroup;
+exports.getAllBetaTesterIDsForBetaGroup = getAllBetaTesterIDsForBetaGroup
 
 
 /***/ }),
@@ -14668,16 +14689,16 @@ module.exports = {
 
 "use strict";
 
-Object.defineProperty(exports, "__esModule", { value: true });
-const api_1 = __webpack_require__(799);
+Object.defineProperty(exports, '__esModule', { value: true })
+const api_1 = __webpack_require__(799)
 /**
  * Send or resend an invitation to a beta tester to test a specified app.
  * @param body
  */
 function sendInvitationToBetaTester(api, body) {
-    return api_1.POST(api, `/betaTesterInvitations`, { body });
+    return api_1.POST(api, `/betaTesterInvitations`, { body })
 }
-exports.sendInvitationToBetaTester = sendInvitationToBetaTester;
+exports.sendInvitationToBetaTester = sendInvitationToBetaTester
 
 
 /***/ }),
@@ -14687,50 +14708,50 @@ exports.sendInvitationToBetaTester = sendInvitationToBetaTester;
 
 "use strict";
 
-Object.defineProperty(exports, "__esModule", { value: true });
-const api_1 = __webpack_require__(799);
+Object.defineProperty(exports, '__esModule', { value: true })
+const api_1 = __webpack_require__(799)
 /**
  * Submit an app for beta app review to allow external testing.
  * @param body
  */
 function submitAppForBetaReview(api, body) {
-    return api_1.POST(api, `/betaAppReviewSubmissions`, { body });
+    return api_1.POST(api, `/betaAppReviewSubmissions`, { body })
 }
-exports.submitAppForBetaReview = submitAppForBetaReview;
+exports.submitAppForBetaReview = submitAppForBetaReview
 /**
  * Find and list beta app review submissions for all builds.
  * @param query
  */
 function listBetaAppReviewSubmissions(api, query) {
-    return api_1.GET(api, `/betaAppReviewSubmissions`, { query });
+    return api_1.GET(api, `/betaAppReviewSubmissions`, { query })
 }
-exports.listBetaAppReviewSubmissions = listBetaAppReviewSubmissions;
+exports.listBetaAppReviewSubmissions = listBetaAppReviewSubmissions
 /**
  * Get a specific beta app review submission.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param query
  */
 function readBetaAppReviewSubmissionInformation(api, id, query) {
-    return api_1.GET(api, `/betaAppReviewSubmissions/${id}`, { query });
+    return api_1.GET(api, `/betaAppReviewSubmissions/${id}`, { query })
 }
-exports.readBetaAppReviewSubmissionInformation = readBetaAppReviewSubmissionInformation;
+exports.readBetaAppReviewSubmissionInformation = readBetaAppReviewSubmissionInformation
 /**
  * Get the build information for a specific beta app review submission.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param query
  */
 function readBuildInformationForBetaAppReviewSubmission(api, id, query) {
-    return api_1.GET(api, `/betaAppReviewSubmissions/${id}/build`, { query });
+    return api_1.GET(api, `/betaAppReviewSubmissions/${id}/build`, { query })
 }
-exports.readBuildInformationForBetaAppReviewSubmission = readBuildInformationForBetaAppReviewSubmission;
+exports.readBuildInformationForBetaAppReviewSubmission = readBuildInformationForBetaAppReviewSubmission
 /**
  * Get the build resource ID associated with a specific beta app review submission.
  * @param id An opaque resource ID that uniquely identifies the resource.
  */
 function getBuildIDForBetaAppReviewSubmission(api, id) {
-    return api_1.GET(api, `/betaAppReviewSubmissions/${id}/relationships/build`);
+    return api_1.GET(api, `/betaAppReviewSubmissions/${id}/relationships/build`)
 }
-exports.getBuildIDForBetaAppReviewSubmission = getBuildIDForBetaAppReviewSubmission;
+exports.getBuildIDForBetaAppReviewSubmission = getBuildIDForBetaAppReviewSubmission
 
 
 /***/ }),
@@ -15396,6 +15417,38 @@ module.exports = function (obj) {
 
 /***/ }),
 
+/***/ 475:
+/***/ (function(__unusedmodule, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, '__esModule', { value: true })
+const api_1 = __webpack_require__(799)
+/**
+ * Enable a capability for a bundle ID.
+ */
+function enableCapability(api, body) {
+    return api_1.POST(api, '/bundleIdCapabilities', { body })
+}
+exports.enableCapability = enableCapability
+/**
+ * Disable a capability for a bundle ID.
+ */
+function disableCapability(api, id) {
+    return api_1.DELETE(api, `/bundleIdCapabilities/${id}`)
+}
+exports.disableCapability = disableCapability
+/**
+ * Update the configuration of a specific capability.
+ */
+function modifyCapabilityConfiguration(api, id, body) {
+    return api_1.PATCH(api, `/bundleIdCapabilities/${id}`, { body })
+}
+exports.modifyCapabilityConfiguration = modifyCapabilityConfiguration
+
+
+/***/ }),
+
 /***/ 482:
 /***/ (function(module) {
 
@@ -15418,34 +15471,45 @@ module.exports = semver.satisfies(process.version, '^6.12.0 || >=8.0.0');
 
 "use strict";
 
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const jsonwebtoken_1 = __importDefault(__webpack_require__(439));
+var __importDefault =
+    (this && this.__importDefault) ||
+    function(mod) {
+        return mod && mod.__esModule ? mod : { default: mod }
+    }
+Object.defineProperty(exports, '__esModule', { value: true })
+const jsonwebtoken_1 = __importDefault(__webpack_require__(439))
 const jwtOptions = (iss, kid) => ({
     algorithm: 'ES256',
     keyid: kid,
     audience: 'appstoreconnect-v1',
     expiresIn: 1200,
     issuer: iss,
-});
+})
 function token(privateKey, issuerId, keyId) {
-    return jsonwebtoken_1.default.sign({}, privateKey, jwtOptions(issuerId, keyId));
+    return jsonwebtoken_1.default.sign(
+        {},
+        privateKey,
+        jwtOptions(issuerId, keyId)
+    )
 }
-exports.token = token;
+exports.token = token
 function tokenAsync(privateKey, issuerId, keyId) {
     return new Promise((resolve, reject) => {
-        jsonwebtoken_1.default.sign({}, privateKey, jwtOptions(issuerId, keyId), (err, token) => {
-            if (err) {
-                reject(err);
-                return;
+        jsonwebtoken_1.default.sign(
+            {},
+            privateKey,
+            jwtOptions(issuerId, keyId),
+            (err, token) => {
+                if (err) {
+                    reject(err)
+                    return
+                }
+                resolve(token)
             }
-            resolve(token);
-        });
-    });
+        )
+    })
 }
-exports.tokenAsync = tokenAsync;
+exports.tokenAsync = tokenAsync
 
 
 /***/ }),
@@ -15467,86 +15531,86 @@ module.exports = body => is.nodeStream(body) && is.function(body.getBoundary);
 
 "use strict";
 
-Object.defineProperty(exports, "__esModule", { value: true });
-const api_1 = __webpack_require__(799);
+Object.defineProperty(exports, '__esModule', { value: true })
+const api_1 = __webpack_require__(799)
 /**
  * Get a list of the users on your team.
  * @param query
  */
 function listUsers(api, query) {
-    return api_1.GET(api, '/users', { query });
+    return api_1.GET(api, '/users', { query })
 }
-exports.listUsers = listUsers;
+exports.listUsers = listUsers
 /**
  * Get information about a user on your team, such as name, roles, and app visibility.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param query
  */
 function readUserInformation(api, id, query) {
-    return api_1.GET(api, `/users/${id}`, { query });
+    return api_1.GET(api, `/users/${id}`, { query })
 }
-exports.readUserInformation = readUserInformation;
+exports.readUserInformation = readUserInformation
 /**
  * Change a user's role, app visibility information, or other account details.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param body
  */
 function modifyUserAccount(api, id, body) {
-    return api_1.PATCH(api, `/users/${id}`, { body });
+    return api_1.PATCH(api, `/users/${id}`, { body })
 }
-exports.modifyUserAccount = modifyUserAccount;
+exports.modifyUserAccount = modifyUserAccount
 /**
  * Remove a user from your team.
  * @param id An opaque resource ID that uniquely identifies the resource.
  */
 function removeUserAccount(api, id) {
-    return api_1.DELETE(api, `/users/${id}`);
+    return api_1.DELETE(api, `/users/${id}`)
 }
-exports.removeUserAccount = removeUserAccount;
+exports.removeUserAccount = removeUserAccount
 /**
  * Get a list of apps that a user on your team can view.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param query
  */
 function listAllAppsVisibleToUser(api, id, query) {
-    return api_1.GET(api, `/users/${id}/visibleApps`, { query });
+    return api_1.GET(api, `/users/${id}/visibleApps`, { query })
 }
-exports.listAllAppsVisibleToUser = listAllAppsVisibleToUser;
+exports.listAllAppsVisibleToUser = listAllAppsVisibleToUser
 /**
  * Get a list of app resource IDs to which a user on your team has access.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param query
  */
 function getAllVisibleAppResourceIDsForUser(api, id, query) {
-    return api_1.GET(api, `/users/${id}/relationships/visibleApps`, { query });
+    return api_1.GET(api, `/users/${id}/relationships/visibleApps`, { query })
 }
-exports.getAllVisibleAppResourceIDsForUser = getAllVisibleAppResourceIDsForUser;
+exports.getAllVisibleAppResourceIDsForUser = getAllVisibleAppResourceIDsForUser
 /**
  * Give a user on your team access to one or more apps.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param body
  */
 function addVisibleAppsToUser(api, id, body) {
-    return api_1.POST(api, `/users/${id}/relationships/visibleApps`, { body });
+    return api_1.POST(api, `/users/${id}/relationships/visibleApps`, { body })
 }
-exports.addVisibleAppsToUser = addVisibleAppsToUser;
+exports.addVisibleAppsToUser = addVisibleAppsToUser
 /**
  * Replace the list of apps a user on your team can see.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param body
  */
 function replaceListOfVisibleAppsForUser(api, id, body) {
-    return api_1.PATCH(api, `/users/${id}/relationships/visibleApps`, { body });
+    return api_1.PATCH(api, `/users/${id}/relationships/visibleApps`, { body })
 }
-exports.replaceListOfVisibleAppsForUser = replaceListOfVisibleAppsForUser;
+exports.replaceListOfVisibleAppsForUser = replaceListOfVisibleAppsForUser
 /**
  * Remove a user on your team’s access to one or more apps.
  * @param id An opaque resource ID that uniquely identifies the resource.
  */
 function removeVisibleAppsFromUser(api, id) {
-    return api_1.DELETE(api, `/users/${id}/relationships/visibleApps`);
+    return api_1.DELETE(api, `/users/${id}/relationships/visibleApps`)
 }
-exports.removeVisibleAppsFromUser = removeVisibleAppsFromUser;
+exports.removeVisibleAppsFromUser = removeVisibleAppsFromUser
 
 
 /***/ }),
@@ -17188,140 +17252,144 @@ module.exports = require("events");
 
 "use strict";
 
-Object.defineProperty(exports, "__esModule", { value: true });
-const api_1 = __webpack_require__(799);
+Object.defineProperty(exports, '__esModule', { value: true })
+const api_1 = __webpack_require__(799)
 /**
  * Find and list apps added in App Store Connect.
  * @param query
  */
 function listApps(api, query) {
-    return api_1.GET(api, '/apps', { query });
+    return api_1.GET(api, '/apps', { query })
 }
-exports.listApps = listApps;
+exports.listApps = listApps
 /**
  * Get information about a specific app.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param query
  */
 function readAppInformation(api, id, query) {
-    return api_1.GET(api, `/apps/${id}`, { query });
+    return api_1.GET(api, `/apps/${id}`, { query })
 }
-exports.readAppInformation = readAppInformation;
+exports.readAppInformation = readAppInformation
 /**
  * Remove one or more beta testers' access to test any builds of a specific app.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param body
  */
 function removeBetaTestersFromAllGroupsAndAppBuilds(api, id, body) {
-    return api_1.DELETE(api, `/apps/${id}/relationships/betaTesters`, { body });
+    return api_1.DELETE(api, `/apps/${id}/relationships/betaTesters`, { body })
 }
-exports.removeBetaTestersFromAllGroupsAndAppBuilds = removeBetaTestersFromAllGroupsAndAppBuilds;
+exports.removeBetaTestersFromAllGroupsAndAppBuilds = removeBetaTestersFromAllGroupsAndAppBuilds
 /**
  * Get a list of beta groups associated with a specific app.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param query
  */
 function listAllBetaGroupsForApp(api, id, query) {
-    return api_1.GET(api, `/apps/${id}/betaGroups`, { query });
+    return api_1.GET(api, `/apps/${id}/betaGroups`, { query })
 }
-exports.listAllBetaGroupsForApp = listAllBetaGroupsForApp;
+exports.listAllBetaGroupsForApp = listAllBetaGroupsForApp
 /**
  * Get a list of the beta group resource IDs associated with a specific app.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param query
  */
 function getAllBetaGroupIDsForApp(api, id, query) {
-    return api_1.GET(api, `/apps/${id}/relationships/betaGroups`, { query });
+    return api_1.GET(api, `/apps/${id}/relationships/betaGroups`, { query })
 }
-exports.getAllBetaGroupIDsForApp = getAllBetaGroupIDsForApp;
+exports.getAllBetaGroupIDsForApp = getAllBetaGroupIDsForApp
 /**
  * Get a list of builds associated with a specific app.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param query
  */
 function listAllBuildsForApp(api, id, query) {
-    return api_1.GET(api, `/apps/${id}/builds`, { query });
+    return api_1.GET(api, `/apps/${id}/builds`, { query })
 }
-exports.listAllBuildsForApp = listAllBuildsForApp;
+exports.listAllBuildsForApp = listAllBuildsForApp
 /**
  * Get a list of build resource IDs associated with a specific app.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param query
  */
 function getAllBuildIDsForApp(api, id, query) {
-    return api_1.GET(api, `/apps/${id}/relationships/builds`, { query });
+    return api_1.GET(api, `/apps/${id}/relationships/builds`, { query })
 }
-exports.getAllBuildIDsForApp = getAllBuildIDsForApp;
+exports.getAllBuildIDsForApp = getAllBuildIDsForApp
 /**
  * Get a list of prerelease versions associated with a specific app.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param query
  */
 function listAllPrereleaseVersionsForApp(api, id, query) {
-    return api_1.GET(api, `/apps/${id}/preReleaseVersions`, { query });
+    return api_1.GET(api, `/apps/${id}/preReleaseVersions`, { query })
 }
-exports.listAllPrereleaseVersionsForApp = listAllPrereleaseVersionsForApp;
+exports.listAllPrereleaseVersionsForApp = listAllPrereleaseVersionsForApp
 /**
  * Get a list of prerelease version IDs for a specific app.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param query
  */
 function getAllPrereleaseVersionIDsForApp(api, id, query) {
-    return api_1.GET(api, `/apps/${id}/relationships/preReleaseVersions`, { query });
+    return api_1.GET(api, `/apps/${id}/relationships/preReleaseVersions`, {
+        query,
+    })
 }
-exports.getAllPrereleaseVersionIDsForApp = getAllPrereleaseVersionIDsForApp;
+exports.getAllPrereleaseVersionIDsForApp = getAllPrereleaseVersionIDsForApp
 /**
  * Get the beta app review details for a specific app.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param query
  */
 function readBetaAppReviewDetailsResourceForApp(api, id, query) {
-    return api_1.GET(api, `/apps/${id}/betaAppReviewDetail`, { query });
+    return api_1.GET(api, `/apps/${id}/betaAppReviewDetail`, { query })
 }
-exports.readBetaAppReviewDetailsResourceForApp = readBetaAppReviewDetailsResourceForApp;
+exports.readBetaAppReviewDetailsResourceForApp = readBetaAppReviewDetailsResourceForApp
 /**
  * Get the beta app review details resource ID associated with a specific app.
  * @param id An opaque resource ID that uniquely identifies the resource.
  */
 function getBetaAppReviewDetailsResourceIDForApp(api, id) {
-    return api_1.GET(api, `/apps/${id}/relationships/betaAppReviewDetail`);
+    return api_1.GET(api, `/apps/${id}/relationships/betaAppReviewDetail`)
 }
-exports.getBetaAppReviewDetailsResourceIDForApp = getBetaAppReviewDetailsResourceIDForApp;
+exports.getBetaAppReviewDetailsResourceIDForApp = getBetaAppReviewDetailsResourceIDForApp
 /**
  * Get the beta license agreement for a specific app.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param query
  */
 function readBetaLicenseAgreementForApp(api, id, query) {
-    return api_1.GET(api, `/apps/${id}/betaLicenseAgreement`, { query });
+    return api_1.GET(api, `/apps/${id}/betaLicenseAgreement`, { query })
 }
-exports.readBetaLicenseAgreementForApp = readBetaLicenseAgreementForApp;
+exports.readBetaLicenseAgreementForApp = readBetaLicenseAgreementForApp
 /**
  * Get the beta app review details resource ID associated with a specific app.
  * @param id An opaque resource ID that uniquely identifies the resource.
  */
 function getBetaLicenseAgreementIDForApp(api, id) {
-    return api_1.GET(api, `/apps/${id}/relationships/betaLicenseAgreement`);
+    return api_1.GET(api, `/apps/${id}/relationships/betaLicenseAgreement`)
 }
-exports.getBetaLicenseAgreementIDForApp = getBetaLicenseAgreementIDForApp;
+exports.getBetaLicenseAgreementIDForApp = getBetaLicenseAgreementIDForApp
 /**
  * Get a list of localized beta test information for a specific app.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param query
  */
 function listAllBetaAppLocalizationsForApp(api, id, query) {
-    return api_1.GET(api, `/apps/${id}/betaAppLocalizations`, { query });
+    return api_1.GET(api, `/apps/${id}/betaAppLocalizations`, { query })
 }
-exports.listAllBetaAppLocalizationsForApp = listAllBetaAppLocalizationsForApp;
+exports.listAllBetaAppLocalizationsForApp = listAllBetaAppLocalizationsForApp
 /**
  * Get a list of beta app localization resource IDs associated with a specific app.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param query
  */
 function getAllBetaAppLocalizationIDsForApp(api, id, query) {
-    return api_1.GET(api, `/apps/${id}/relationships/betaAppLocalizations`, { query });
+    return api_1.GET(api, `/apps/${id}/relationships/betaAppLocalizations`, {
+        query,
+    })
 }
-exports.getAllBetaAppLocalizationIDsForApp = getAllBetaAppLocalizationIDsForApp;
+exports.getAllBetaAppLocalizationIDsForApp = getAllBetaAppLocalizationIDsForApp
 
 
 /***/ }),
@@ -17338,60 +17406,62 @@ module.exports = require("path");
 
 "use strict";
 
-Object.defineProperty(exports, "__esModule", { value: true });
-const api_1 = __webpack_require__(799);
+Object.defineProperty(exports, '__esModule', { value: true })
+const api_1 = __webpack_require__(799)
 /**
  * Get a list of prerelease versions for all apps.
  * @param query
  */
 function listPrereleaseVersions(api, query) {
-    return api_1.GET(api, `/preReleaseVersions`, { query });
+    return api_1.GET(api, `/preReleaseVersions`, { query })
 }
-exports.listPrereleaseVersions = listPrereleaseVersions;
+exports.listPrereleaseVersions = listPrereleaseVersions
 /**
  * Get information about a specific prerelease version.
  * @param id
  * @param query
  */
 function readPrereleaseVersionInformation(api, id, query) {
-    return api_1.GET(api, `/preReleaseVersions/${id}`, { query });
+    return api_1.GET(api, `/preReleaseVersions/${id}`, { query })
 }
-exports.readPrereleaseVersionInformation = readPrereleaseVersionInformation;
+exports.readPrereleaseVersionInformation = readPrereleaseVersionInformation
 /**
  * Get the app information for a specific prerelease version.
  * @param id
  * @param query
  */
 function readAppInformationForPrereleaseVersion(api, id, query) {
-    return api_1.GET(api, `/preReleaseVersions/${id}/app`, { query });
+    return api_1.GET(api, `/preReleaseVersions/${id}/app`, { query })
 }
-exports.readAppInformationForPrereleaseVersion = readAppInformationForPrereleaseVersion;
+exports.readAppInformationForPrereleaseVersion = readAppInformationForPrereleaseVersion
 /**
  * Get the app resource ID associated with a specific prerelease version.
  * @param id
  */
 function getAppResourceIDForPrereleaseVersion(api, id) {
-    return api_1.GET(api, `/preReleaseVersions/${id}/relationships/app`);
+    return api_1.GET(api, `/preReleaseVersions/${id}/relationships/app`)
 }
-exports.getAppResourceIDForPrereleaseVersion = getAppResourceIDForPrereleaseVersion;
+exports.getAppResourceIDForPrereleaseVersion = getAppResourceIDForPrereleaseVersion
 /**
  * Get a list of builds of a specific prerelease version.
  * @param id
  * @param query
  */
 function listAllBuildsForPrereleaseVersion(api, id, query) {
-    return api_1.GET(api, `/preReleaseVersions/${id}/builds`, { query });
+    return api_1.GET(api, `/preReleaseVersions/${id}/builds`, { query })
 }
-exports.listAllBuildsForPrereleaseVersion = listAllBuildsForPrereleaseVersion;
+exports.listAllBuildsForPrereleaseVersion = listAllBuildsForPrereleaseVersion
 /**
  * Get a list of build resource IDs associated with a provided prerelease version.
  * @param id
  * @param query
  */
 function getAllBuildIDsForPrereleaseVersion(api, id, query) {
-    return api_1.GET(api, `/preReleaseVersions/${id}/relationships/builds`, { query });
+    return api_1.GET(api, `/preReleaseVersions/${id}/relationships/builds`, {
+        query,
+    })
 }
-exports.getAllBuildIDsForPrereleaseVersion = getAllBuildIDsForPrereleaseVersion;
+exports.getAllBuildIDsForPrereleaseVersion = getAllBuildIDsForPrereleaseVersion
 
 
 /***/ }),
@@ -17401,9 +17471,9 @@ exports.getAllBuildIDsForPrereleaseVersion = getAllBuildIDsForPrereleaseVersion;
 
 "use strict";
 
-Object.defineProperty(exports, "__esModule", { value: true });
-var v1_1 = __webpack_require__(274);
-exports.v1 = v1_1.v1;
+Object.defineProperty(exports, '__esModule', { value: true })
+var v1_1 = __webpack_require__(274)
+exports.v1 = v1_1.v1
 
 
 /***/ }),
@@ -17767,21 +17837,60 @@ function isUnixExecutable(stats) {
 
 /***/ }),
 
+/***/ 685:
+/***/ (function(__unusedmodule, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, '__esModule', { value: true })
+const api_1 = __webpack_require__(799)
+/**
+ * Create a new certificate using a certificate signing request.
+ */
+function createCertificate(api, body) {
+    return api_1.POST(api, '/certificates', { body })
+}
+exports.createCertificate = createCertificate
+/**
+ * Find and list certificates and download their data.
+ */
+function listAndDownloadCertificates(api, query) {
+    return api_1.GET(api, '/certificates', { query })
+}
+exports.listAndDownloadCertificates = listAndDownloadCertificates
+/**
+ * Get information about a certificate and download the certificate data.
+ */
+function readAndDownloadCertificateInformation(api, id, query) {
+    return api_1.GET(api, `/certificates/${id}`, { query })
+}
+exports.readAndDownloadCertificateInformation = readAndDownloadCertificateInformation
+/**
+ * Get information about a certificate and download the certificate data.
+ */
+function revokeCertificate(api, id) {
+    return api_1.DELETE(api, `/certificates/${id}`)
+}
+exports.revokeCertificate = revokeCertificate
+
+
+/***/ }),
+
 /***/ 690:
 /***/ (function(__unusedmodule, exports, __webpack_require__) {
 
 "use strict";
 
-Object.defineProperty(exports, "__esModule", { value: true });
-const api_1 = __webpack_require__(799);
+Object.defineProperty(exports, '__esModule', { value: true })
+const api_1 = __webpack_require__(799)
 /**
  * Send a notification to all assigned beta testers that a build is available for testing.
  * @param body
  */
 function sendNotificationOfAvailableBuild(api, body) {
-    return api_1.POST(api, '/buildBetaNotifications', { body });
+    return api_1.POST(api, '/buildBetaNotifications', { body })
 }
-exports.sendNotificationOfAvailableBuild = sendNotificationOfAvailableBuild;
+exports.sendNotificationOfAvailableBuild = sendNotificationOfAvailableBuild
 
 
 /***/ }),
@@ -17791,50 +17900,50 @@ exports.sendNotificationOfAvailableBuild = sendNotificationOfAvailableBuild;
 
 "use strict";
 
-Object.defineProperty(exports, "__esModule", { value: true });
-const api_1 = __webpack_require__(799);
+Object.defineProperty(exports, '__esModule', { value: true })
+const api_1 = __webpack_require__(799)
 /**
  * Get a list of pending invitations to join your team.
  * @param query
  */
 function listInvitedUsers(api, query) {
-    return api_1.GET(api, '/userInvitations', { query });
+    return api_1.GET(api, '/userInvitations', { query })
 }
-exports.listInvitedUsers = listInvitedUsers;
+exports.listInvitedUsers = listInvitedUsers
 /**
  * Get information about a pending invitation to join your team.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param query
  */
 function readUserInvitationInformation(api, id, query) {
-    return api_1.GET(api, `/userInvitations/${id}`, { query });
+    return api_1.GET(api, `/userInvitations/${id}`, { query })
 }
-exports.readUserInvitationInformation = readUserInvitationInformation;
+exports.readUserInvitationInformation = readUserInvitationInformation
 /**
  * Invite a user with assigned user roles to join your team.
  * @param body
  */
 function inviteUser(api, body) {
-    return api_1.POST(api, `/userInvitations`, { body });
+    return api_1.POST(api, `/userInvitations`, { body })
 }
-exports.inviteUser = inviteUser;
+exports.inviteUser = inviteUser
 /**
  * Cancel a pending invitation for a user to join your team.
  * @param id An opaque resource ID that uniquely identifies the resource.
  */
 function cancelUserInvitation(api, id) {
-    return api_1.DELETE(api, `/userInvitations/${id}`);
+    return api_1.DELETE(api, `/userInvitations/${id}`)
 }
-exports.cancelUserInvitation = cancelUserInvitation;
+exports.cancelUserInvitation = cancelUserInvitation
 /**
  * Get a list of apps that will be visible to a user with a pending invitation.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param query
  */
 function listAllAppsVisibleToInvitedUser(api, id, query) {
-    return api_1.GET(api, `/userInvitations/${id}/visibleApps`, { query });
+    return api_1.GET(api, `/userInvitations/${id}/visibleApps`, { query })
 }
-exports.listAllAppsVisibleToInvitedUser = listAllAppsVisibleToInvitedUser;
+exports.listAllAppsVisibleToInvitedUser = listAllAppsVisibleToInvitedUser
 /**
  * Get a list of apps that will be visible to a user with a pending invitation.
  * @param id An opaque resource ID that uniquely identifies the resource.
@@ -17843,9 +17952,9 @@ exports.listAllAppsVisibleToInvitedUser = listAllAppsVisibleToInvitedUser;
 function getAllAppResourceIDsVisibleToInvitedUser(api, id, query) {
     return api_1.GET(api, `/userInvitations/${id}/relationships/visibleApps`, {
         query,
-    });
+    })
 }
-exports.getAllAppResourceIDsVisibleToInvitedUser = getAllAppResourceIDsVisibleToInvitedUser;
+exports.getAllAppResourceIDsVisibleToInvitedUser = getAllAppResourceIDsVisibleToInvitedUser
 
 
 /***/ }),
@@ -18080,6 +18189,24 @@ module.exports = isPlainObject;
 
 /***/ }),
 
+/***/ 725:
+/***/ (function(__unusedmodule, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p]
+}
+Object.defineProperty(exports, '__esModule', { value: true })
+__export(__webpack_require__(475))
+__export(__webpack_require__(875))
+__export(__webpack_require__(685))
+__export(__webpack_require__(877))
+__export(__webpack_require__(928))
+
+
+/***/ }),
+
 /***/ 747:
 /***/ (function(module) {
 
@@ -18099,97 +18226,103 @@ module.exports = require("zlib");
 
 "use strict";
 
-Object.defineProperty(exports, "__esModule", { value: true });
-const api_1 = __webpack_require__(799);
+Object.defineProperty(exports, '__esModule', { value: true })
+const api_1 = __webpack_require__(799)
 /**
  * Find and list builds for all apps in App Store Connect.
  */
 function listBuilds(api, query) {
-    return api_1.GET(api, `/builds`, { query });
+    return api_1.GET(api, `/builds`, { query })
 }
-exports.listBuilds = listBuilds;
+exports.listBuilds = listBuilds
 /**
  * Get information about a specific build.
  */
 function readBuildInformation(api, id, query) {
-    return api_1.GET(api, `/builds/${id}`, { query });
+    return api_1.GET(api, `/builds/${id}`, { query })
 }
-exports.readBuildInformation = readBuildInformation;
+exports.readBuildInformation = readBuildInformation
 /**
  * Get the app information for a specific build.
  */
 function readAppInformationForBuild(api, id, query) {
-    return api_1.GET(api, `/builds/${id}/app`, { query });
+    return api_1.GET(api, `/builds/${id}/app`, { query })
 }
-exports.readAppInformationForBuild = readAppInformationForBuild;
+exports.readAppInformationForBuild = readAppInformationForBuild
 /**
  * Get the app resource ID associated with a specific build.
  */
 function getAppResourceIDForBuild(api, id) {
-    return api_1.GET(api, `/builds/${id}/relationships/app`);
+    return api_1.GET(api, `/builds/${id}/relationships/app`)
 }
-exports.getAppResourceIDForBuild = getAppResourceIDForBuild;
+exports.getAppResourceIDForBuild = getAppResourceIDForBuild
 /**
  * Get the prerelease version for a specific build.
  */
 function readPrereleaseVersionForBuild(api, id, query) {
-    return api_1.GET(api, `/builds/${id}/preReleaseVersion`, { query });
+    return api_1.GET(api, `/builds/${id}/preReleaseVersion`, { query })
 }
-exports.readPrereleaseVersionForBuild = readPrereleaseVersionForBuild;
+exports.readPrereleaseVersionForBuild = readPrereleaseVersionForBuild
 /**
  * Get a list of resource IDs of prerelease versions associated with a build.
  */
 function getAllResourceIDsForPrereleaseVersionsForBuild(api, id) {
-    return api_1.GET(api, `/builds/${id}/relationships/preReleaseVersion`);
+    return api_1.GET(api, `/builds/${id}/relationships/preReleaseVersion`)
 }
-exports.getAllResourceIDsForPrereleaseVersionsForBuild = getAllResourceIDsForPrereleaseVersionsForBuild;
+exports.getAllResourceIDsForPrereleaseVersionsForBuild = getAllResourceIDsForPrereleaseVersionsForBuild
 /**
  * Expire a build or change its encryption exemption setting.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param body
  */
 function modifyBuild(api, id, body) {
-    return api_1.PATCH(api, `/builds/${id}`, { body });
+    return api_1.PATCH(api, `/builds/${id}`, { body })
 }
-exports.modifyBuild = modifyBuild;
+exports.modifyBuild = modifyBuild
 /**
  * Assign an app encryption declaration to a build.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param body
  */
 function assignAppEncryptionDeclarationForBuild(api, id, body) {
-    return api_1.PATCH(api, `/builds/${id}/relationships/appEncryptionDeclaration`, {
-        body,
-    });
+    return api_1.PATCH(
+        api,
+        `/builds/${id}/relationships/appEncryptionDeclaration`,
+        {
+            body,
+        }
+    )
 }
-exports.assignAppEncryptionDeclarationForBuild = assignAppEncryptionDeclarationForBuild;
+exports.assignAppEncryptionDeclarationForBuild = assignAppEncryptionDeclarationForBuild
 /**
  * Add or create a beta group to a build to enable testing.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param body
  */
 function addAccessForBetaGroupsForBuild(api, id, body) {
-    return api_1.POST(api, `/builds/${id}/relationships/betaGroups`, { body });
+    return api_1.POST(api, `/builds/${id}/relationships/betaGroups`, { body })
 }
-exports.addAccessForBetaGroupsForBuild = addAccessForBetaGroupsForBuild;
+exports.addAccessForBetaGroupsForBuild = addAccessForBetaGroupsForBuild
 /**
  * Remove access to a specific build for all beta testers in one or more beta groups.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param body
  */
 function removeAccessForBetaGroupsForBuild(api, id, body) {
-    return api_1.DELETE(api, `/builds/${id}/relationships/betaGroups`, { body });
+    return api_1.DELETE(api, `/builds/${id}/relationships/betaGroups`, { body })
 }
-exports.removeAccessForBetaGroupsForBuild = removeAccessForBetaGroupsForBuild;
+exports.removeAccessForBetaGroupsForBuild = removeAccessForBetaGroupsForBuild
 /**
  * Enable a beta tester who is not a part of a beta group to test a build.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param body
  */
 function assignIndividualTestersForBuild(api, id, body) {
-    return api_1.POST(api, `/builds/${id}/relationships/individualTesters`, { body });
+    return api_1.POST(api, `/builds/${id}/relationships/individualTesters`, {
+        body,
+    })
 }
-exports.assignIndividualTestersForBuild = assignIndividualTestersForBuild;
+exports.assignIndividualTestersForBuild = assignIndividualTestersForBuild
 /**
  * Remove access to test a specific build from one or more individually assigned testers.
  * @param id An opaque resource ID that uniquely identifies the resource.
@@ -18198,98 +18331,107 @@ exports.assignIndividualTestersForBuild = assignIndividualTestersForBuild;
 function removeIndividualTestersFromBuild(api, id, body) {
     return api_1.DELETE(api, `/builds/${id}/relationships/individualTesters`, {
         body,
-    });
+    })
 }
-exports.removeIndividualTestersFromBuild = removeIndividualTestersFromBuild;
+exports.removeIndividualTestersFromBuild = removeIndividualTestersFromBuild
 /**
  * Get a list of beta testers individually assigned to a build.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param query
  */
 function listAllIndividualTestersForBuild(api, id, query) {
-    return api_1.GET(api, `/builds/${id}/individualTesters`, { query });
+    return api_1.GET(api, `/builds/${id}/individualTesters`, { query })
 }
-exports.listAllIndividualTestersForBuild = listAllIndividualTestersForBuild;
+exports.listAllIndividualTestersForBuild = listAllIndividualTestersForBuild
 /**
  * Get a list of resource IDs of individual testers associated with a build.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param query
  */
 function getAllResourceIDsForIndividualTestersForBuild(api, id, query) {
-    return api_1.GET(api, `/builds/${id}/relationships/individualTesters`, { query });
+    return api_1.GET(api, `/builds/${id}/relationships/individualTesters`, {
+        query,
+    })
 }
-exports.getAllResourceIDsForIndividualTestersForBuild = getAllResourceIDsForIndividualTestersForBuild;
+exports.getAllResourceIDsForIndividualTestersForBuild = getAllResourceIDsForIndividualTestersForBuild
 /**
  * Get the beta app review submission status for a specific build.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param query
  */
 function readBetaAppReviewSubmissionForBuild(api, id, query) {
-    return api_1.GET(api, `/builds/${id}/betaAppReviewSubmission`, { query });
+    return api_1.GET(api, `/builds/${id}/betaAppReviewSubmission`, { query })
 }
-exports.readBetaAppReviewSubmissionForBuild = readBetaAppReviewSubmissionForBuild;
+exports.readBetaAppReviewSubmissionForBuild = readBetaAppReviewSubmissionForBuild
 /**
  * Get the beta app review submission resource ID associated with a specific build.
  * @param id An opaque resource ID that uniquely identifies the resource.
  */
 function getBetaAppReviewSubmissionIDForBuild(api, id) {
-    return api_1.GET(api, `/builds/${id}/relationships/betaAppReviewSubmission`);
+    return api_1.GET(api, `/builds/${id}/relationships/betaAppReviewSubmission`)
 }
-exports.getBetaAppReviewSubmissionIDForBuild = getBetaAppReviewSubmissionIDForBuild;
+exports.getBetaAppReviewSubmissionIDForBuild = getBetaAppReviewSubmissionIDForBuild
 /**
  * Get the beta test details for a specific build.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param query
  */
 function readBuildBetaDetailsInformationForBuild(api, id, query) {
-    return api_1.GET(api, `/builds/${id}/buildBetaDetail`, { query });
+    return api_1.GET(api, `/builds/${id}/buildBetaDetail`, { query })
 }
-exports.readBuildBetaDetailsInformationForBuild = readBuildBetaDetailsInformationForBuild;
+exports.readBuildBetaDetailsInformationForBuild = readBuildBetaDetailsInformationForBuild
 /**
  * Get the build beta details resource ID associated with a specific build.
  * @param id An opaque resource ID that uniquely identifies the resource.
  */
 function getBuildBetaDetailsResourceIDForBuild(api, id) {
-    return api_1.GET(api, `/builds/${id}/relationships/buildBetaDetail`);
+    return api_1.GET(api, `/builds/${id}/relationships/buildBetaDetail`)
 }
-exports.getBuildBetaDetailsResourceIDForBuild = getBuildBetaDetailsResourceIDForBuild;
+exports.getBuildBetaDetailsResourceIDForBuild = getBuildBetaDetailsResourceIDForBuild
 /**
  * Read an app encryption declaration associated with a specific build.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param query
  */
 function readAppEncryptionDeclarationForBuild(api, id, query) {
-    return api_1.GET(api, `/builds/${id}/appEncryptionDeclaration`, { query });
+    return api_1.GET(api, `/builds/${id}/appEncryptionDeclaration`, { query })
 }
-exports.readAppEncryptionDeclarationForBuild = readAppEncryptionDeclarationForBuild;
+exports.readAppEncryptionDeclarationForBuild = readAppEncryptionDeclarationForBuild
 /**
  * Get the beta app encryption declaration resource ID associated with a build.
  * @param id An opaque resource ID that uniquely identifies the resource.
  */
 function getAppEncryptionDeclarationIDForBuild(api, id) {
-    return api_1.GET(api, `/builds/${id}/relationships/appEncryptionDeclaration`);
+    return api_1.GET(
+        api,
+        `/builds/${id}/relationships/appEncryptionDeclaration`
+    )
 }
-exports.getAppEncryptionDeclarationIDForBuild = getAppEncryptionDeclarationIDForBuild;
+exports.getAppEncryptionDeclarationIDForBuild = getAppEncryptionDeclarationIDForBuild
 /**
  * Get a list of localized beta test information for a specific build.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param query
  */
 function listAllBetaBuildLocalizationsForBuild(api, id, query) {
-    return api_1.GET(api, `/builds/${id}/betaBuildLocalizations`, { query });
+    return api_1.GET(api, `/builds/${id}/betaBuildLocalizations`, { query })
 }
-exports.listAllBetaBuildLocalizationsForBuild = listAllBetaBuildLocalizationsForBuild;
+exports.listAllBetaBuildLocalizationsForBuild = listAllBetaBuildLocalizationsForBuild
 /**
  * Get a list of beta build localization resource IDs associated with a build.
  * @param id An opaque resource ID that uniquely identifies the resource.
  * @param query
  */
 function getAllBetaBuildLocalizationIDsForBuild(api, id, query) {
-    return api_1.GET(api, `/builds/${id}/relationships/betaBuildLocalizations`, {
-        query,
-    });
+    return api_1.GET(
+        api,
+        `/builds/${id}/relationships/betaBuildLocalizations`,
+        {
+            query,
+        }
+    )
 }
-exports.getAllBetaBuildLocalizationIDsForBuild = getAllBetaBuildLocalizationIDsForBuild;
+exports.getAllBetaBuildLocalizationIDsForBuild = getAllBetaBuildLocalizationIDsForBuild
 
 
 /***/ }),
@@ -18583,65 +18725,74 @@ module.exports = got;
 
 "use strict";
 
-var __rest = (this && this.__rest) || function (s, e) {
-    var t = {};
-    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-        t[p] = s[p];
-    if (s != null && typeof Object.getOwnPropertySymbols === "function")
-        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
-            t[p[i]] = s[p[i]];
-    return t;
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const got_1 = __importDefault(__webpack_require__(798));
-const luxon_1 = __webpack_require__(317);
-const qs_1 = __importDefault(__webpack_require__(635));
-const url_1 = __webpack_require__(835);
+var __rest =
+    (this && this.__rest) ||
+    function(s, e) {
+        var t = {}
+        for (var p in s)
+            if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+                t[p] = s[p]
+        if (s != null && typeof Object.getOwnPropertySymbols === 'function')
+            for (
+                var i = 0, p = Object.getOwnPropertySymbols(s);
+                i < p.length;
+                i++
+            )
+                if (e.indexOf(p[i]) < 0) t[p[i]] = s[p[i]]
+        return t
+    }
+var __importDefault =
+    (this && this.__importDefault) ||
+    function(mod) {
+        return mod && mod.__esModule ? mod : { default: mod }
+    }
+Object.defineProperty(exports, '__esModule', { value: true })
+const got_1 = __importDefault(__webpack_require__(798))
+const luxon_1 = __webpack_require__(317)
+const qs_1 = __importDefault(__webpack_require__(635))
+const url_1 = __webpack_require__(835)
 function makeAPI(baseUrl, token) {
-    return { baseUrl, token: token || null };
+    return { baseUrl, token: token || null }
 }
-exports.makeAPI = makeAPI;
+exports.makeAPI = makeAPI
 class APIError extends Error {
     constructor(response, code, message) {
-        super(`${code} ${message}`);
-        this.response = response;
+        super(`${code} ${message}`)
+        this.response = response
     }
 }
-exports.APIError = APIError;
-var ContentType;
-(function (ContentType) {
-    ContentType["JSON"] = "application/json";
-    ContentType["GZIP"] = "application/a-gzip";
-})(ContentType = exports.ContentType || (exports.ContentType = {}));
+exports.APIError = APIError
+var ContentType
+;(function(ContentType) {
+    ContentType['JSON'] = 'application/json'
+    ContentType['GZIP'] = 'application/a-gzip'
+})((ContentType = exports.ContentType || (exports.ContentType = {})))
 function HEAD(api, path, options = {}) {
-    return call(api, path, 'HEAD', options);
+    return call(api, path, 'HEAD', options)
 }
-exports.HEAD = HEAD;
+exports.HEAD = HEAD
 function GET(api, path, options = {}) {
-    return call(api, path, 'GET', options);
+    return call(api, path, 'GET', options)
 }
-exports.GET = GET;
+exports.GET = GET
 function POST(api, path, options = {}) {
-    return call(api, path, 'POST', options);
+    return call(api, path, 'POST', options)
 }
-exports.POST = POST;
+exports.POST = POST
 function PUT(api, path, options = {}) {
-    return call(api, path, 'PUT', options);
+    return call(api, path, 'PUT', options)
 }
-exports.PUT = PUT;
+exports.PUT = PUT
 function PATCH(api, path, options = {}) {
-    return call(api, path, 'PATCH', options);
+    return call(api, path, 'PATCH', options)
 }
-exports.PATCH = PATCH;
+exports.PATCH = PATCH
 function DELETE(api, path, options = {}) {
-    return call(api, path, 'DELETE', options);
+    return call(api, path, 'DELETE', options)
 }
-exports.DELETE = DELETE;
+exports.DELETE = DELETE
 async function call(api, path, method, options = {}) {
-    let rawResponse;
+    let rawResponse
     try {
         rawResponse = await got_1.default(path, {
             baseUrl: api.baseUrl,
@@ -18649,109 +18800,109 @@ async function call(api, path, method, options = {}) {
             headers: headers(api.token, options.contentType),
             query: query(options.query),
             body: body(options.body),
-        });
+        })
+    } catch (error) {
+        throw new Error(error.response.body)
     }
-    catch (error) {
-        throw new Error(error.response.body);
-    }
-    const { body: responseBody } = rawResponse, response = __rest(rawResponse, ["body"]);
+    const { body: responseBody } = rawResponse,
+        response = __rest(rawResponse, ['body'])
     if (!body) {
-        return undefined;
-    }
-    else if (options.contentType === ContentType.GZIP) {
-        return body;
-    }
-    else {
-        return json(responseBody, response);
+        return undefined
+    } else if (options.contentType === ContentType.GZIP) {
+        return body
+    } else {
+        return json(responseBody, response)
     }
 }
 function headers(token, contentType = ContentType.JSON) {
     const defaultHeaders = {
         'content-type': contentType,
-    };
-    let headers = defaultHeaders;
-    if (token) {
-        headers = Object.assign({}, headers, { authorization: `Bearer ${token}` });
     }
-    return headers;
+    let headers = defaultHeaders
+    if (token) {
+        headers = Object.assign({}, headers, {
+            authorization: `Bearer ${token}`,
+        })
+    }
+    return headers
 }
 function json(body, response) {
-    let json;
+    let json
     try {
-        json = JSON.parse(body, jsonParser);
-    }
-    catch (jsonError) {
-        throw jsonError;
+        json = JSON.parse(body, jsonParser)
+    } catch (jsonError) {
+        throw jsonError
     }
     if (json.errors && Array.isArray(json.errors)) {
-        throw new APIError(json, response.statusCode, response.statusMessage);
+        throw new APIError(json, response.statusCode, response.statusMessage)
     }
-    return json;
+    return json
 }
 function jsonParser(_key, value) {
     if (typeof value === 'string') {
-        const url = urlStringToURL(value);
+        const url = urlStringToURL(value)
         if (url) {
-            return url;
+            return url
         }
-        const date = dateStringToDate(value);
+        const date = dateStringToDate(value)
         if (date) {
-            return date;
+            return date
         }
     }
-    return value;
+    return value
 }
 function urlStringToURL(value) {
     try {
-        const url = new url_1.URL(value);
+        const url = new url_1.URL(value)
         if (url) {
-            return url;
+            return url
         }
-    }
-    catch (_a) { }
+    } catch (_a) {}
 }
 function dateStringToDate(value) {
-    const date = luxon_1.DateTime.fromISO(value);
+    const date = luxon_1.DateTime.fromISO(value)
     if (date.isValid) {
-        return date;
+        return date
     }
 }
-const isObject = (value) => typeof value === 'object' && value !== null;
-const isDateTime = (value) => (value && value.isLuxonDateTime) || false;
-const isURL = (value) => (value && value.href && typeof value.href === 'string') || false;
+const isObject = value => typeof value === 'object' && value !== null
+const isDateTime = value => (value && value.isLuxonDateTime) || false
+const isURL = value =>
+    (value && value.href && typeof value.href === 'string') || false
 function query(object) {
     if (object === undefined) {
-        return;
+        return
     }
     return qs_1.default.stringify(sanitize(object), {
         arrayFormat: 'repeat',
         encodeValuesOnly: true,
-    });
+    })
 }
 function sanitize(object) {
     if (isObject(object)) {
         if (Array.isArray(object)) {
-            object = object.map(sanitize);
-        }
-        else if (isDateTime(object)) {
-            object = object.toISO();
-        }
-        else if (isURL(object)) {
-            object = object.href;
-        }
-        else {
-            object = Object.entries(object).reduce((acc, [key, value]) => (Object.assign({}, acc, { [key]: sanitize(value) })), {});
+            object = object.map(sanitize)
+        } else if (isDateTime(object)) {
+            object = object.toISO()
+        } else if (isURL(object)) {
+            object = object.href
+        } else {
+            object = Object.entries(object).reduce(
+                (acc, [key, value]) =>
+                    Object.assign({}, acc, { [key]: sanitize(value) }),
+                {}
+            )
         }
     }
-    return object;
+    return object
 }
 function body(object) {
     if (object === undefined) {
-        return;
+        return
     }
-    const json = JSON.stringify(object);
-    console.log(json);
-    return json;
+    const json = JSON.stringify(object)
+    console.log(json)
+    return json
 }
 
 
@@ -19085,22 +19236,28 @@ module.exports = require("url");
 
 "use strict";
 
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
-    return result;
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const financeReports = __importStar(__webpack_require__(23));
-exports.financeReports = financeReports;
-const testflight = __importStar(__webpack_require__(882));
-exports.testflight = testflight;
-const userInvitations = __importStar(__webpack_require__(716));
-exports.userInvitations = userInvitations;
-const users = __importStar(__webpack_require__(508));
-exports.users = users;
+var __importStar =
+    (this && this.__importStar) ||
+    function(mod) {
+        if (mod && mod.__esModule) return mod
+        var result = {}
+        if (mod != null)
+            for (var k in mod)
+                if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k]
+        result['default'] = mod
+        return result
+    }
+Object.defineProperty(exports, '__esModule', { value: true })
+const financeReports = __importStar(__webpack_require__(23))
+exports.financeReports = financeReports
+const provisioning = __importStar(__webpack_require__(725))
+exports.provisioning = provisioning
+const testflight = __importStar(__webpack_require__(882))
+exports.testflight = testflight
+const userInvitations = __importStar(__webpack_require__(716))
+exports.userInvitations = userInvitations
+const users = __importStar(__webpack_require__(508))
+exports.users = users
 
 
 /***/ }),
@@ -19142,29 +19299,148 @@ module.exports = response => {
 
 /***/ }),
 
+/***/ 875:
+/***/ (function(__unusedmodule, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, '__esModule', { value: true })
+const api_1 = __webpack_require__(799)
+/**
+ * Register a new bundle ID for app development.
+ */
+function registerNewBundleId(api, body) {
+    return api_1.POST(api, '/bundleIds', { body })
+}
+exports.registerNewBundleId = registerNewBundleId
+/**
+ * Update a specific bundle ID’s name.
+ */
+function modifyBundleId(api, id, body) {
+    return api_1.PATCH(api, `/bundleIds/${id}`, { body })
+}
+exports.modifyBundleId = modifyBundleId
+/**
+ * Delete a bundle ID that is used for app development.
+ */
+function deleteBundleId(api, id) {
+    return api_1.DELETE(api, `/bundleIds/${id}`)
+}
+exports.deleteBundleId = deleteBundleId
+/**
+ * Find and list bundle IDs that are registered to your team.
+ */
+function listBundleIds(api, query) {
+    return api_1.GET(api, '/bundleIds', { query })
+}
+exports.listBundleIds = listBundleIds
+/**
+ * Get information about a specific bundle ID.
+ */
+function readBundleIdInformation(api, id, query) {
+    return api_1.GET(api, `/bundleIds/${id}`, { query })
+}
+exports.readBundleIdInformation = readBundleIdInformation
+/**
+ * Get the resource IDs for all profiles associated with a specific bundle ID.
+ */
+function getAllProfileIdsForBundleId(api, id, query) {
+    return api_1.GET(api, `/bundleIds/${id}/relationships/profiles`, { query })
+}
+exports.getAllProfileIdsForBundleId = getAllProfileIdsForBundleId
+/**
+ * Get a list of all profiles for a specific bundle ID.
+ */
+function listAllProfilesForBundleId(api, id, query) {
+    return api_1.GET(api, `/bundleIds/${id}/profiles`, { query })
+}
+exports.listAllProfilesForBundleId = listAllProfilesForBundleId
+/**
+ * Get the resource IDs for all capabilities associated with a specific bundle ID.
+ */
+function getAllCapabililityIdsForBundleId(api, id, query) {
+    return api_1.GET(
+        api,
+        `/bundleIds/${id}/relationships/bundleIdCapabilities`,
+        {
+            query,
+        }
+    )
+}
+exports.getAllCapabililityIdsForBundleId = getAllCapabililityIdsForBundleId
+/**
+ * Get a list of all capabilities for a specific bundle ID.
+ */
+function listAllCapabilitiesForBundleId(api, id, query) {
+    return api_1.GET(api, `/bundleIds/${id}/bundleIdCapabilities`, { query })
+}
+exports.listAllCapabilitiesForBundleId = listAllCapabilitiesForBundleId
+
+
+/***/ }),
+
+/***/ 877:
+/***/ (function(__unusedmodule, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, '__esModule', { value: true })
+const api_1 = __webpack_require__(799)
+/**
+ * Register a new device for app development.
+ */
+function registerNewDevice(api, body) {
+    return api_1.POST(api, `/devices`, { body })
+}
+exports.registerNewDevice = registerNewDevice
+/**
+ * Find and list devices registered to your team.
+ */
+function listDevices(api, query) {
+    return api_1.GET(api, `/devices`, { query })
+}
+exports.listDevices = listDevices
+/**
+ * Get information for a specific device registered to your team.
+ */
+function readDeviceInformation(api, id, query) {
+    return api_1.GET(api, `/devices/${id}`, { query })
+}
+exports.readDeviceInformation = readDeviceInformation
+/**
+ * Update the name or status of a specific device.
+ */
+function modifyRegisteredDevice(api, id, body) {
+    return api_1.PATCH(api, `/devices/${id}`, { body })
+}
+exports.modifyRegisteredDevice = modifyRegisteredDevice
+
+
+/***/ }),
+
 /***/ 882:
 /***/ (function(__unusedmodule, exports, __webpack_require__) {
 
 "use strict";
 
 function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p]
 }
-Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(356));
-__export(__webpack_require__(621));
-__export(__webpack_require__(328));
-__export(__webpack_require__(63));
-__export(__webpack_require__(447));
-__export(__webpack_require__(15));
-__export(__webpack_require__(359));
-__export(__webpack_require__(206));
-__export(__webpack_require__(442));
-__export(__webpack_require__(117));
-__export(__webpack_require__(311));
-__export(__webpack_require__(690));
-__export(__webpack_require__(767));
-__export(__webpack_require__(623));
+Object.defineProperty(exports, '__esModule', { value: true })
+__export(__webpack_require__(356))
+__export(__webpack_require__(621))
+__export(__webpack_require__(328))
+__export(__webpack_require__(63))
+__export(__webpack_require__(447))
+__export(__webpack_require__(15))
+__export(__webpack_require__(359))
+__export(__webpack_require__(206))
+__export(__webpack_require__(442))
+__export(__webpack_require__(117))
+__export(__webpack_require__(311))
+__export(__webpack_require__(690))
+__export(__webpack_require__(767))
+__export(__webpack_require__(623))
 
 
 /***/ }),
@@ -19322,42 +19598,85 @@ module.exports = asPromise;
 
 /***/ }),
 
-/***/ 940:
+/***/ 928:
 /***/ (function(__unusedmodule, exports, __webpack_require__) {
 
 "use strict";
 
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
-    return result;
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const v1 = __importStar(__webpack_require__(799));
-async function listBundleIds(api, query) {
-    return v1.GET(api, '/bundleIds', { query });
+Object.defineProperty(exports, '__esModule', { value: true })
+const api_1 = __webpack_require__(799)
+/**
+ * Create a new provisioning profile.
+ */
+function createProfile(api, body) {
+    return api_1.POST(api, `/profiles`, { body })
 }
-exports.listBundleIds = listBundleIds;
-async function readBundleIdInformation(api, id, query) {
-    return v1.GET(api, `/bundleIds/${id}`, { query });
+exports.createProfile = createProfile
+/**
+ * Delete a provisioning profile that is used for app development or distribution.
+ */
+function deleteProfile(api, id) {
+    return api_1.DELETE(api, `/profiles/${id}`)
 }
-exports.readBundleIdInformation = readBundleIdInformation;
+exports.deleteProfile = deleteProfile
 /**
  * Find and list provisioning profiles and download their data.
  */
-async function listAndDownloadProfiles(api, query) {
-    return v1.GET(api, `/profiles`, { query });
+function listAndDownloadProfiles(api, query) {
+    return api_1.GET(api, '/profiles/', { query })
 }
-exports.listAndDownloadProfiles = listAndDownloadProfiles;
+exports.listAndDownloadProfiles = listAndDownloadProfiles
 /**
- * Get information for a specific provisioning profile and download its data.
+ * Find and list provisioning profiles and download their data.
  */
-async function readAndDownloadProfileInformation(api, id, query) {
-    return v1.GET(api, `/profiles/${id}`, { query });
+function readAndDownloadProfileInformation(api, id, query) {
+    return api_1.GET(api, `/profiles/${id}`, { query })
 }
-exports.readAndDownloadProfileInformation = readAndDownloadProfileInformation;
+exports.readAndDownloadProfileInformation = readAndDownloadProfileInformation
+/**
+ * Get the bundle ID information for a specific provisioning profile.
+ */
+function readBundleIdForProfile(api, id, query) {
+    return api_1.GET(api, `/profiles/${id}/bundleId`, { query })
+}
+exports.readBundleIdForProfile = readBundleIdForProfile
+/**
+ * Get the resource ID of a bundle associated with a specific provisioning profile.
+ */
+function getBundleResourceIdForProfile(api, id) {
+    return api_1.GET(api, `/profiles/${id}/relationships/bundleId`)
+}
+exports.getBundleResourceIdForProfile = getBundleResourceIdForProfile
+/**
+ * Get a list of all certificates and their data for a specific provisioning profile.
+ */
+function listAllCertificatesForProfile(api, id, query) {
+    return api_1.GET(api, `/profiles/${id}/certificates`, { query })
+}
+exports.listAllCertificatesForProfile = listAllCertificatesForProfile
+/**
+ * Get the resource IDs of all certificates associated with a specific provisioning profile.
+ */
+function getAllCertificateIdsForProfile(api, id, query) {
+    return api_1.GET(api, `/profiles/${id}/relationships/certificates`, {
+        query,
+    })
+}
+exports.getAllCertificateIdsForProfile = getAllCertificateIdsForProfile
+/**
+ * Get a list of all devices for a specific provisioning profile.
+ */
+function listAllDevicesForProfile(api, id, query) {
+    return api_1.GET(api, `/profiles/${id}/devices`, { query })
+}
+exports.listAllDevicesForProfile = listAllDevicesForProfile
+/**
+ * Get the resource IDs of all devices associated with a specific provisioning profile.
+ */
+function getAllDeviceResourceIdsForProfile(api, id, query) {
+    return api_1.GET(api, `/profiles/${id}/relationships/devices`, { query })
+}
+exports.getAllDeviceResourceIdsForProfile = getAllDeviceResourceIdsForProfile
 
 
 /***/ }),
