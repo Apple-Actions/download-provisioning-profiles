@@ -19,7 +19,7 @@ inputs:
     required: true
 outputs:
   profiles:
-    description: 'An array of JSON objects containing the `name`, `udid`, and `type` of the provisioning profiles downloaded.'
+    description: 'A JSON string containing an array of objects with the `name`, `udid`, and `type` of the provisioning profiles downloaded.'
 runs:
   using: 'node16'
   main: 'dist/index.js'
