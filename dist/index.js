@@ -3465,7 +3465,11 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const appstoreconnect_1 = __webpack_require__(626);
 const v1Ext = __importStar(__webpack_require__(940));
-async function downloadActiveProvisioningProfiles(privateKey, issuerId, privateKeyId, bundleId) {
+function isActiveProfile(attributes, type) {
+    return (attributes.profileState === 'ACTIVE' &&
+        (type ? attributes.profileType === type : true));
+}
+async function downloadActiveProvisioningProfiles(privateKey, issuerId, privateKeyId, bundleId, profileType) {
     var _a;
     const token = appstoreconnect_1.v1.token(privateKey, issuerId, privateKeyId);
     const api = appstoreconnect_1.v1(token);
@@ -3483,7 +3487,7 @@ async function downloadActiveProvisioningProfiles(privateKey, issuerId, privateK
             .map(data => { var _a; return (_a = data) === null || _a === void 0 ? void 0 : _a.id; });
         const profiles = (_a = bundleIds.included) === null || _a === void 0 ? void 0 : _a.filter(i => i.type === 'profiles' &&
             profileIds.includes(i.id) &&
-            i.attributes.profileState === 'ACTIVE');
+            isActiveProfile(i.attributes, profileType));
         if (!(profiles && profiles.length > 0)) {
             throw new Error(`Unable to find 'ACTIVE' profiles for bundleId '${bundleId}'.`);
         }
@@ -3567,10 +3571,11 @@ const provisioning = __importStar(__webpack_require__(165));
 async function run() {
     try {
         const bundleId = core.getInput('bundle-id');
-        const apiKeyId = core.getInput(`api-key-id`);
-        const apiPrivateKey = core.getInput(`api-private-key`);
-        const issuerId = core.getInput(`issuer-id`);
-        const profiles = await provisioning.downloadActiveProvisioningProfiles(apiPrivateKey, issuerId, apiKeyId, bundleId);
+        const apiKeyId = core.getInput('api-key-id');
+        const apiPrivateKey = core.getInput('api-private-key');
+        const issuerId = core.getInput('issuer-id');
+        const profileType = core.getInput('profile-type');
+        const profiles = await provisioning.downloadActiveProvisioningProfiles(apiPrivateKey, issuerId, apiKeyId, bundleId, profileType);
         if (!process.env.HOME) {
             throw new Error('Environment variable `HOME` is not defined!');
         }
@@ -3586,6 +3591,15 @@ async function run() {
             fs.writeFileSync(fullPath, buffer);
             core.info(`Wrote ${profile.attributes.profileType} profile '${profile.attributes.name}' to '${fullPath}'.`);
         }
+        const outputProfiles = profiles.map(value => {
+            var _a;
+            return {
+                name: value.attributes.name,
+                udid: value.attributes.uuid,
+                type: (_a = value.attributes.profileType) === null || _a === void 0 ? void 0 : _a.toString()
+            };
+        });
+        core.setOutput('profiles', JSON.stringify(outputProfiles));
     }
     catch (error) {
         core.setFailed(error.message);
@@ -15385,7 +15399,7 @@ module.exports = function (obj) {
 /***/ 482:
 /***/ (function(module) {
 
-module.exports = {"_from":"got@^9.5.0","_id":"got@9.6.0","_inBundle":false,"_integrity":"sha512-R7eWptXuGYxwijs0eV+v3o6+XH1IqVK8dJOEecQfTmkncw9AV4dcw/Dhxi8MdlqPthxxpZyizMzyg8RTmEsG+Q==","_location":"/got","_phantomChildren":{},"_requested":{"type":"range","registry":true,"raw":"got@^9.5.0","name":"got","escapedName":"got","rawSpec":"^9.5.0","saveSpec":null,"fetchSpec":"^9.5.0"},"_requiredBy":["/appstoreconnect"],"_resolved":"https://registry.npmjs.org/got/-/got-9.6.0.tgz","_shasum":"edf45e7d67f99545705de1f7bbeeeb121765ed85","_spec":"got@^9.5.0","_where":"/Users/oliver/Developer/Apple-Actions/download-provisioning-profiles/node_modules/appstoreconnect","ava":{"concurrency":4},"browser":{"decompress-response":false,"electron":false},"bugs":{"url":"https://github.com/sindresorhus/got/issues"},"bundleDependencies":false,"dependencies":{"@sindresorhus/is":"^0.14.0","@szmarczak/http-timer":"^1.1.2","cacheable-request":"^6.0.0","decompress-response":"^3.3.0","duplexer3":"^0.1.4","get-stream":"^4.1.0","lowercase-keys":"^1.0.1","mimic-response":"^1.0.1","p-cancelable":"^1.0.0","to-readable-stream":"^1.0.0","url-parse-lax":"^3.0.0"},"deprecated":false,"description":"Simplified HTTP requests","devDependencies":{"ava":"^1.1.0","coveralls":"^3.0.0","delay":"^4.1.0","form-data":"^2.3.3","get-port":"^4.0.0","np":"^3.1.0","nyc":"^13.1.0","p-event":"^2.1.0","pem":"^1.13.2","proxyquire":"^2.0.1","sinon":"^7.2.2","slow-stream":"0.0.4","tempfile":"^2.0.0","tempy":"^0.2.1","tough-cookie":"^3.0.0","xo":"^0.24.0"},"engines":{"node":">=8.6"},"files":["source"],"homepage":"https://github.com/sindresorhus/got#readme","keywords":["http","https","get","got","url","uri","request","util","utility","simple","curl","wget","fetch","net","network","electron"],"license":"MIT","main":"source","name":"got","repository":{"type":"git","url":"git+https://github.com/sindresorhus/got.git"},"scripts":{"release":"np","test":"xo && nyc ava"},"version":"9.6.0"};
+module.exports = {"_args":[["got@9.6.0","/Users/oliver/Developer/Apple-Actions/download-provisioning-profiles"]],"_from":"got@9.6.0","_id":"got@9.6.0","_inBundle":false,"_integrity":"sha512-R7eWptXuGYxwijs0eV+v3o6+XH1IqVK8dJOEecQfTmkncw9AV4dcw/Dhxi8MdlqPthxxpZyizMzyg8RTmEsG+Q==","_location":"/got","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"got@9.6.0","name":"got","escapedName":"got","rawSpec":"9.6.0","saveSpec":null,"fetchSpec":"9.6.0"},"_requiredBy":["/appstoreconnect"],"_resolved":"https://registry.npmjs.org/got/-/got-9.6.0.tgz","_spec":"9.6.0","_where":"/Users/oliver/Developer/Apple-Actions/download-provisioning-profiles","ava":{"concurrency":4},"browser":{"decompress-response":false,"electron":false},"bugs":{"url":"https://github.com/sindresorhus/got/issues"},"dependencies":{"@sindresorhus/is":"^0.14.0","@szmarczak/http-timer":"^1.1.2","cacheable-request":"^6.0.0","decompress-response":"^3.3.0","duplexer3":"^0.1.4","get-stream":"^4.1.0","lowercase-keys":"^1.0.1","mimic-response":"^1.0.1","p-cancelable":"^1.0.0","to-readable-stream":"^1.0.0","url-parse-lax":"^3.0.0"},"description":"Simplified HTTP requests","devDependencies":{"ava":"^1.1.0","coveralls":"^3.0.0","delay":"^4.1.0","form-data":"^2.3.3","get-port":"^4.0.0","np":"^3.1.0","nyc":"^13.1.0","p-event":"^2.1.0","pem":"^1.13.2","proxyquire":"^2.0.1","sinon":"^7.2.2","slow-stream":"0.0.4","tempfile":"^2.0.0","tempy":"^0.2.1","tough-cookie":"^3.0.0","xo":"^0.24.0"},"engines":{"node":">=8.6"},"files":["source"],"homepage":"https://github.com/sindresorhus/got#readme","keywords":["http","https","get","got","url","uri","request","util","utility","simple","curl","wget","fetch","net","network","electron"],"license":"MIT","main":"source","name":"got","repository":{"type":"git","url":"git+https://github.com/sindresorhus/got.git"},"scripts":{"release":"np","test":"xo && nyc ava"},"version":"9.6.0"};
 
 /***/ }),
 

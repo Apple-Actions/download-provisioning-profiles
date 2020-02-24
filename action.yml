@@ -3,8 +3,11 @@ description: 'Downloads an Apple Provisioning Profiles from the AppStore Connect
 author: 'Itty Bitty Apps Pty Ltd'
 inputs:
   bundle-id:
-    description: 'The bundle identifier of the application.'
+    description: 'The bundle identifier of the application'
     required: true
+  profile-type:
+    description: 'The type of profile to download. One of IOS_APP_DEVELOPMENT, IOS_APP_STORE, IOS_APP_ADHOC, IOS_APP_INHOUSE, MAC_APP_DEVELOPMENT, MAC_APP_STORE, MAC_APP_DIRECT, TVOS_APP_DEVELOPMENT, TVOS_APP_STORE, TVOS_APP_ADHOC, TVOS_APP_INHOUSE'
+    required: false
   issuer-id:
     description: 'The AppStore Connect API Key Issuer Identifier'
     required: true
@@ -14,6 +17,9 @@ inputs:
   api-private-key:
     description: 'The PKCS8 format Private Key for AppStore Connect API'
     required: true
+outputs:
+  profiles:
+    description: 'An array of JSON objects containing the `name`, `udid`, and `type` of the provisioning profiles downloaded.'
 runs:
   using: 'node12'
   main: 'dist/index.js'
