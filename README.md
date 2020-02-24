@@ -21,7 +21,7 @@ jobs:
         api-private-key: ${{ secrets.APPSTORE_PRIVATE_KEY }}
   
     - name: 'Another example step'
-      run: echo ${{ steps.provisioning.outputs.profiles[0].udid }}
+      run: echo ${{ steps.provisioning.outputs.profiles }}
 ```
 
 ## Additional Arguments
