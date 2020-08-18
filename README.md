@@ -1,4 +1,4 @@
-# GitHub Action to import Apple Code-signing Certificates and Keys
+# GitHub Action to download and install Provisioning Profiles
 
 [![License](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](LICENSE)
 [![PRs welcome!](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
