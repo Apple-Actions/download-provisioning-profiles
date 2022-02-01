@@ -31,7 +31,8 @@ async function run(): Promise<void> {
         )
       }
 
-      const profileFilename = `${profile.attributes.uuid}.mobileprovision`
+      const profileFileExtension = profile.attributes.platform == 'MAC_OS' ? 'provisionprofile' : 'mobileprovision'
+      const profileFilename = `${profile.attributes.uuid}.${profileFileExtension}`
       const basePath = path.join(
         process.env['HOME'],
         '/Library/MobileDevice/Provisioning Profiles'
