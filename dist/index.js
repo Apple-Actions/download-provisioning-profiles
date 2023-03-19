@@ -22580,7 +22580,7 @@ async function run() {
             if (!(profile.attributes.uuid && profile.attributes.profileContent)) {
                 throw new Error('Profile attributes `uuid` and `profileContent` must be defined!');
             }
-            const profileFileExtension = profile.attributes.platform == 'MAC_OS' ? 'provisionprofile' : 'mobileprovision';
+            const profileFileExtension = profile.attributes.platform === 'MAC_OS' ? 'provisionprofile' : 'mobileprovision';
             const profileFilename = `${profile.attributes.uuid}.${profileFileExtension}`;
             const basePath = path.join(process.env['HOME'], '/Library/MobileDevice/Provisioning Profiles');
             await io.mkdirP(basePath);
