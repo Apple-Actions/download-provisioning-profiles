@@ -12,7 +12,7 @@ jobs:
     steps:
     - name: 'Download Provisioning Profiles'
       id: provisioning
-      uses: apple-actions/download-provisioning-profiles@v1
+      uses: apple-actions/download-provisioning-profiles@v3
       with: 
         bundle-id: 'com.example.App'
         profile-type: 'IOS_APP_STORE'

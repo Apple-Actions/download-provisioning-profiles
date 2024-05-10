@@ -21,7 +21,7 @@ outputs:
   profiles:
     description: 'An array of JSON objects containing the `name`, `udid`, and `type` of the provisioning profiles downloaded.'
 runs:
-  using: 'node16'
+  using: 'node20'
   main: 'dist/index.js'
 branding:
   icon: arrow-down-circle
