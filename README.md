@@ -8,7 +8,7 @@
 ```yaml
 jobs:
   build:
-    runs-on: macOS-latest
+    runs-on: iOS-latest
     steps:
     - name: 'Download Provisioning Profiles'
       id: provisioning
