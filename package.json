@@ -4,6 +4,9 @@
   "private": true,
   "description": "GitHub Action for downloading provisioning profiles",
   "main": "lib/main.js",
+  "engines": {
+    "node": "20"
+  },
   "scripts": {
     "build": "tsc",
     "format": "prettier --write **/*.ts",
