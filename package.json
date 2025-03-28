@@ -28,7 +28,7 @@
   "license": "MIT",
   "dependencies": {
     "@actions/core": "^1.2.0",
-    "@actions/exec": "^1.0.3",
+    "@actions/io": "^1.0.0",
     "@types/jsonwebtoken": "^8.3.7",
     "@types/luxon": "^1.21.0",
     "appstoreconnect": "github:orj/appstoreconnect#release/v0.3.0",
@@ -38,10 +38,10 @@
   "devDependencies": {
     "@types/node": "^12.7.12",
     "@typescript-eslint/parser": "^2.8.0",
+    "@typescript-eslint/eslint-plugin": "^1.13.0",
     "@zeit/ncc": "^0.20.5",
     "eslint": "^5.16.0",
     "eslint-plugin-github": "^2.0.0",
-    "js-yaml": "^3.13.1",
     "prettier": "^1.19.1",
     "typescript": "^3.6.4"
   },
