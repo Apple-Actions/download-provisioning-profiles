@@ -1,3 +1,4 @@
 ignores: [
+  "@types/luxon",
   "luxon",
 ]
