@@ -8,11 +8,11 @@
     "node": "20"
   },
   "scripts": {
-    "build": "tsc",
-    "format": "prettier --write **/*.ts",
-    "format-check": "prettier --check **/*.ts",
-    "lint": "eslint src/**/*.ts",
-    "package": "ncc build",
+    "build": "tsc --outDir lib",
+    "format": "prettier --write src/",
+    "format-check": "prettier --check src/",
+    "lint": "eslint",
+    "package": "ncc build --license licenses.txt",
     "all": "yarn format && yarn lint && yarn build && yarn package"
   },
   "repository": {
