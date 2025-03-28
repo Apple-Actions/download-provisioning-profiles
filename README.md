@@ -3,25 +3,26 @@
 [![License](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](LICENSE)
 [![PRs welcome!](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
-## Usage:
+## Getting Started (can be the same key as the [upload testflight action](https://github.com/Apple-Actions/upload-testflight-build/blob/master/README.md#getting-started))
+
+* Create an `App Store Connect` profile following [these instructions](https://developer.apple.com/help/account/provisioning-profiles/create-a-development-provisioning-profile/)
+* Create an `App Store Connect API Key` ([these instructions](https://developer.apple.com/documentation/appstoreconnectapi/creating-api-keys-for-app-store-connect-api) with the role `App Manager`)
+* Download the certificate (must be done upon creation and will be called `ios_distribution.cer`)
+* Copy the `.p8` in base64 format ( `base64 -i AuthKey_<key_id>.p8 | pbcopy` )
+* Add it as a secret called `APPSTORE_API_PRIVATE_KEY` and add `Key ID` as a variable called `APPSTORE_API_KEY_ID`
+* Add `Issuer ID` as a variable called `APPSTORE_ISSUER_ID` ([found here](https://appstoreconnect.apple.com/access/integrations/api))
+
+## Usage
 
 ```yaml
-jobs:
-  build:
-    runs-on: macOS-latest
-    steps:
-    - name: 'Download Provisioning Profiles'
-      id: provisioning
-      uses: apple-actions/download-provisioning-profiles@v1
-      with: 
-        bundle-id: 'com.example.App'
-        profile-type: 'IOS_APP_STORE'
-        issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
-        api-key-id: ${{ secrets.APPSTORE_KEY_ID }}
-        api-private-key: ${{ secrets.APPSTORE_PRIVATE_KEY }}
-  
-    - name: 'Another example step'
-      run: echo ${{ steps.provisioning.outputs.profiles }}
+- name: 'Download Provisioning Profiles'
+  uses: apple-actions/download-provisioning-profiles@v4
+  with:
+    bundle-id: 'com.example.App'
+    profile-type: 'IOS_APP_STORE'
+    issuer-id: ${{ vars.APPSTORE_ISSUER_ID }}
+    api-key-id: ${{ vars.APPSTORE_KEY_ID }}
+    api-private-key: ${{ secrets.APPSTORE_PRIVATE_KEY }}
 ```
 
 ## Additional Arguments
