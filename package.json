@@ -27,23 +27,21 @@
   "author": "Itty Bitty Apps Pty Ltd",
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "~1.2.0",
-    "@actions/io": "~1.0.0",
-    "@types/jsonwebtoken": "~8.3.0",
-    "@types/luxon": "~1.21.0",
+    "@actions/core": "~1.11.0",
+    "@actions/io": "~1.1.0",
+    "@types/jsonwebtoken": "~9.0.0",
+    "@types/luxon": "~1.27.0",
     "appstoreconnect": "github:orj/appstoreconnect#release/v0.3.0",
-    "jsonwebtoken": "~8.5.0",
+    "jsonwebtoken": "~9.0.0",
     "luxon": "~1.28.0"
   },
   "devDependencies": {
-    "@types/node": "~12.12.0",
-    "@typescript-eslint/parser": "~2.10.0",
-    "@typescript-eslint/eslint-plugin": "~1.13.0",
-    "@zeit/ncc": "~0.20.0",
-    "eslint": "~5.16.0",
-    "eslint-plugin-github": "~2.0.0",
-    "prettier": "~1.19.0",
-    "typescript": "~3.7.0"
+    "@types/node": "~20.17.0",
+    "@vercel/ncc": "~0.38.0",
+    "eslint": "~9.23.0",
+    "eslint-plugin-github": "~6.0.0",
+    "prettier": "~3.5.0",
+    "typescript": "~5.8.0"
   },
   "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }

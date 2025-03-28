@@ -1,18 +1,18 @@
-import * as core from '@actions/core'
-import * as io from '@actions/io'
-import * as fs from 'fs'
-import * as path from 'path'
-import * as provisioning from './provisioning'
+import {getInput, info, setOutput, setFailed} from '@actions/core'
+import {mkdirP} from '@actions/io'
+import {writeFileSync} from 'fs'
+import {join} from 'path'
+import {downloadActiveProvisioningProfiles} from './provisioning'
 
 async function run(): Promise<void> {
   try {
-    const bundleId: string = core.getInput('bundle-id')
-    const apiKeyId = core.getInput('api-key-id')
-    const apiPrivateKey = core.getInput('api-private-key')
-    const issuerId = core.getInput('issuer-id')
-    const profileType = core.getInput('profile-type')
+    const bundleId: string = getInput('bundle-id')
+    const apiKeyId = getInput('api-key-id')
+    const apiPrivateKey = getInput('api-private-key')
+    const issuerId = getInput('issuer-id')
+    const profileType = getInput('profile-type')
 
-    const profiles = await provisioning.downloadActiveProvisioningProfiles(
+    const profiles = await downloadActiveProvisioningProfiles(
       apiPrivateKey,
       issuerId,
       apiKeyId,
@@ -32,19 +32,19 @@ async function run(): Promise<void> {
       }
 
       const profileFileExtension =
-        profile.attributes.platform == 'MAC_OS'
+        profile.attributes.platform === 'MAC_OS'
           ? 'provisionprofile'
           : 'mobileprovision'
       const profileFilename = `${profile.attributes.uuid}.${profileFileExtension}`
-      const basePath = path.join(
+      const basePath = join(
         process.env['HOME'],
         '/Library/MobileDevice/Provisioning Profiles'
       )
-      await io.mkdirP(basePath)
+      await mkdirP(basePath)
       const buffer = Buffer.from(profile.attributes.profileContent, 'base64')
-      const fullPath = path.join(basePath, profileFilename)
-      fs.writeFileSync(fullPath, buffer)
-      core.info(
+      const fullPath = join(basePath, profileFilename)
+      writeFileSync(fullPath, buffer)
+      info(
         `Wrote ${profile.attributes.profileType} profile '${profile.attributes.name}' to '${fullPath}'.`
       )
     }
@@ -55,9 +55,13 @@ async function run(): Promise<void> {
         type: value.attributes.profileType?.toString()
       }
     })
-    core.setOutput('profiles', JSON.stringify(outputProfiles))
+    setOutput('profiles', JSON.stringify(outputProfiles))
   } catch (error) {
-    core.setFailed(error.message)
+    if (error instanceof Error) {
+      setFailed(error.message)
+    } else {
+      setFailed(`Action failed with error ${error}`)
+    }
   }
 }
 
