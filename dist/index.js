@@ -14,7 +14,6 @@ function isActiveProfile(attributes, type) {
         (type ? attributes.profileType === type : true));
 }
 async function downloadActiveProvisioningProfiles(privateKey, issuerId, privateKeyId, bundleId, profileType) {
-    var _a;
     const token = appstoreconnect_1.v1.token(privateKey, issuerId, privateKeyId);
     const api = (0, appstoreconnect_1.v1)(token);
     const bundleIds = await appstoreconnect_1.v1.provisioning.listBundleIds(api, {
@@ -27,9 +26,9 @@ async function downloadActiveProvisioningProfiles(privateKey, issuerId, privateK
     else {
         const profileIds = bundleIds.data
             .filter(value => value.attributes.identifier === bundleId)
-            .flatMap(bundle => { var _a; return (_a = bundle.relationships) === null || _a === void 0 ? void 0 : _a.profiles.data; })
-            .map(data => data === null || data === void 0 ? void 0 : data.id);
-        const profiles = (_a = bundleIds.included) === null || _a === void 0 ? void 0 : _a.filter(i => i.type === 'profiles' &&
+            .flatMap(bundle => bundle.relationships?.profiles.data)
+            .map(data => data?.id);
+        const profiles = bundleIds.included?.filter(i => i.type === 'profiles' &&
             profileIds.includes(i.id) &&
             isActiveProfile(i.attributes, profileType));
         if (!(profiles && profiles.length > 0)) {
@@ -49411,11 +49410,10 @@ async function run() {
             (0, core_1.info)(`Wrote ${profile.attributes.profileType} profile '${profile.attributes.name}' to '${fullPath}'.`);
         }
         const outputProfiles = profiles.map(value => {
-            var _a;
             return {
                 name: value.attributes.name,
                 udid: value.attributes.uuid,
-                type: (_a = value.attributes.profileType) === null || _a === void 0 ? void 0 : _a.toString()
+                type: value.attributes.profileType?.toString()
             };
         });
         (0, core_1.setOutput)('profiles', JSON.stringify(outputProfiles));
