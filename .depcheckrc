@@ -1,4 +1,0 @@
-ignores: [
-  "@types/luxon",
-  "luxon",
-]

@@ -1,0 +1,6 @@
+{
+  "ignoreDependencies": [
+    "@types/luxon",
+    "luxon"
+  ]
+}
