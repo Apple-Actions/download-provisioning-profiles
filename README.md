@@ -22,7 +22,7 @@
     profile-type: 'IOS_APP_STORE'
     issuer-id: ${{ vars.APPSTORE_ISSUER_ID }}
     api-key-id: ${{ vars.APPSTORE_KEY_ID }}
-    api-private-key: ${{ secrets.APPSTORE_PRIVATE_KEY }}
+    api-private-key: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
 ```
 
 ## Additional Arguments
