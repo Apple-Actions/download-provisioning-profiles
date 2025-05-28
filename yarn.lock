@@ -1177,7 +1177,7 @@ __metadata:
     eslint: "npm:~9.27.0"
     eslint-plugin-github: "npm:~6.0.0"
     jsonwebtoken: "npm:~9.0.0"
-    knip: "npm:~5.56.0"
+    knip: "npm:~5.58.0"
     luxon: "npm:~1.28.0"
     prettier: "npm:~3.5.0"
     typescript: "npm:~5.8.0"
@@ -2628,9 +2628,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"knip@npm:~5.56.0":
-  version: 5.56.0
-  resolution: "knip@npm:5.56.0"
+"knip@npm:~5.58.0":
+  version: 5.58.1
+  resolution: "knip@npm:5.58.1"
   dependencies:
     "@nodelib/fs.walk": "npm:^1.2.3"
     fast-glob: "npm:^3.3.3"
@@ -2651,7 +2651,7 @@ __metadata:
   bin:
     knip: bin/knip.js
     knip-bun: bin/knip-bun.js
-  checksum: 10c0/434fc8962f0d42faaa001ccda0fd2f78503a453acc69254de49103fe02224f4e74950766c6c441af8217b6f9fa0d7e7907c2eb8c0c2fcc7ef9b663293e9639b0
+  checksum: 10c0/486af895f48a42cd9e04f621006a223855672c7c6113a956db2374bf391774c5c435878d399875c1d6fdc7e230153d88edf348cadb08358fb31e8c2c2c40ab69
   languageName: node
   linkType: hard
 
