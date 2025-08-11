@@ -8615,6 +8615,8 @@ var once = __nccwpck_require__(5560);
 
 var noop = function() {};
 
+var qnt = global.Bare ? queueMicrotask : process.nextTick.bind(process);
+
 var isRequest = function(stream) {
 	return stream.setHeader && typeof stream.abort === 'function';
 };
@@ -8658,7 +8660,7 @@ var eos = function(stream, opts, callback) {
 	};
 
 	var onclose = function() {
-		process.nextTick(onclosenexttick);
+		qnt(onclosenexttick);
 	};
 
 	var onclosenexttick = function() {
@@ -23632,7 +23634,7 @@ try {
 } catch (e) {}
 
 var noop = function () {}
-var ancient = /^v?\.0/.test(process.version)
+var ancient = typeof process === 'undefined' ? false : /^v?\.0/.test(process.version)
 
 var isFn = function (fn) {
   return typeof fn === 'function'
