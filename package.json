@@ -1,6 +1,6 @@
 {
   "name": "download-provisioning-profiles",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "private": true,
   "description": "GitHub Action for downloading provisioning profiles",
   "main": "lib/main.js",
