@@ -8265,6 +8265,38 @@ function coerce (version) {
 
 /***/ }),
 
+/***/ 1491:
+/***/ ((module) => {
+
+"use strict";
+
+
+// eslint-disable-next-line no-extra-parens, no-empty-function
+const cached = /** @type {import('.').AsyncFunctionConstructor} */ (async function () {}.constructor);
+
+/** @type {import('.')} */
+module.exports = () => cached;
+
+
+
+/***/ }),
+
+/***/ 36:
+/***/ ((module) => {
+
+"use strict";
+
+
+// eslint-disable-next-line no-extra-parens, no-empty-function
+const cached = /** @type {import('.').AsyncGeneratorFunctionConstructor} */ (async function* () {}.constructor);
+
+/** @type {import('.')} */
+module.exports = () => cached;
+
+
+
+/***/ }),
+
 /***/ 9732:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
@@ -9484,6 +9516,22 @@ module.exports = Function.prototype.bind || implementation;
 
 /***/ }),
 
+/***/ 7228:
+/***/ ((module) => {
+
+"use strict";
+
+
+// eslint-disable-next-line no-extra-parens, no-empty-function
+const cached = /** @type {GeneratorFunctionConstructor} */ (function* () {}.constructor);
+
+/** @type {import('.')} */
+module.exports = () => cached;
+
+
+
+/***/ }),
+
 /***/ 470:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
@@ -9509,15 +9557,6 @@ var min = __nccwpck_require__(1017);
 var pow = __nccwpck_require__(6947);
 var round = __nccwpck_require__(2621);
 var sign = __nccwpck_require__(156);
-
-var $Function = Function;
-
-// eslint-disable-next-line consistent-return
-var getEvalledConstructor = function (expressionSyntax) {
-	try {
-		return $Function('"use strict"; return (' + expressionSyntax + ').constructor;')();
-	} catch (e) {}
-};
 
 var $gOPD = __nccwpck_require__(3170);
 var $defineProperty = __nccwpck_require__(9094);
@@ -9584,7 +9623,7 @@ var INTRINSICS = {
 	'%Float32Array%': typeof Float32Array === 'undefined' ? undefined : Float32Array,
 	'%Float64Array%': typeof Float64Array === 'undefined' ? undefined : Float64Array,
 	'%FinalizationRegistry%': typeof FinalizationRegistry === 'undefined' ? undefined : FinalizationRegistry,
-	'%Function%': $Function,
+	'%Function%': Function,
 	'%GeneratorFunction%': needsEval,
 	'%Int8Array%': typeof Int8Array === 'undefined' ? undefined : Int8Array,
 	'%Int16Array%': typeof Int16Array === 'undefined' ? undefined : Int16Array,
@@ -9650,14 +9689,18 @@ if (getProto) {
 	}
 }
 
+var getAsyncFunction = __nccwpck_require__(1491);
+var getGeneratorFunction = __nccwpck_require__(7228);
+var getAsyncGeneratorFunction = __nccwpck_require__(36);
+
 var doEval = function doEval(name) {
 	var value;
 	if (name === '%AsyncFunction%') {
-		value = getEvalledConstructor('async function () {}');
+		value = getAsyncFunction() || void undefined;
 	} else if (name === '%GeneratorFunction%') {
-		value = getEvalledConstructor('function* () {}');
+		value = getGeneratorFunction() || void undefined;
 	} else if (name === '%AsyncGeneratorFunction%') {
-		value = getEvalledConstructor('async function* () {}');
+		value = getAsyncGeneratorFunction() || void undefined;
 	} else if (name === '%AsyncGenerator%') {
 		var fn = doEval('%AsyncGeneratorFunction%');
 		if (fn) {
