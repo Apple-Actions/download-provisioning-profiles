@@ -33,7 +33,7 @@
     "@types/jsonwebtoken": "~9.0.0",
     "@types/luxon": "~1.27.0",
     "appstoreconnect": "github:orj/appstoreconnect#release/v0.3.0",
-    "jsonwebtoken": "~9.0.0",
+    "jsonwebtoken": "~9.0.3",
     "luxon": "~1.28.0"
   },
   "devDependencies": {
