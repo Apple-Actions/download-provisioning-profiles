@@ -1,8 +1,5 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
-  "display": "Node 24",
-  "_version": "24.0.0",
-
   "compilerOptions": {
     "lib": ["es2024"],
     "module": "nodenext",
