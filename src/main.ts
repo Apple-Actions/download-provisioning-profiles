@@ -2,7 +2,7 @@ import {getInput, info, setOutput, setFailed} from '@actions/core'
 import {mkdirP} from '@actions/io'
 import {writeFileSync} from 'node:fs'
 import {join} from 'node:path'
-import {downloadActiveProvisioningProfiles} from './provisioning.js'
+import {downloadActiveProvisioningProfiles} from './provisioning'
 
 async function run(): Promise<void> {
   try {

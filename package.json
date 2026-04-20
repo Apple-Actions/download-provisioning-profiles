@@ -3,18 +3,18 @@
   "version": "6.0.0",
   "private": true,
   "description": "GitHub Action for downloading provisioning profiles",
-  "type": "module",
+  "main": "src/main.ts",
   "engines": {
     "node": "24"
   },
   "scripts": {
-    "build": "tsc --noEmit",
+    "build": "esbuild src/main.ts --bundle --platform=node --target=node24 --format=esm --outfile=dist/index.js --banner:js=\"import{createRequire}from'node:module';const require=createRequire(import.meta.url);\"",
     "format": "prettier --write src/",
     "format:check": "prettier --check src/",
     "knip": "knip",
     "lint": "eslint",
-    "package": "esbuild src/main.ts --bundle --platform=node --target=node24 --format=esm --outfile=dist/index.js --banner:js=\"import{createRequire}from'node:module';const require=createRequire(import.meta.url);\"",
-    "all": "yarn format && yarn knip && yarn lint && yarn build && yarn package"
+    "type:check": "tsc --noEmit",
+    "all": "yarn format && yarn knip && yarn lint && yarn type:check && yarn build"
   },
   "repository": {
     "type": "git",
@@ -36,7 +36,6 @@
     "@types/node": "~24.12.0",
     "esbuild": "~0.28.0",
     "eslint": "~9.39.0",
-    "eslint-import-resolver-typescript": "~4.4.0",
     "eslint-plugin-github": "~6.0.0",
     "knip": "~6.5.0",
     "prettier": "~3.8.0",

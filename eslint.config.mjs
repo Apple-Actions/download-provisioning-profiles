@@ -14,11 +14,6 @@ export default defineConfig([
   github.getFlatConfigs().recommended,
   ...github.getFlatConfigs().typescript,
   {
-    settings: {
-      'import/resolver': {
-        typescript: true
-      }
-    },
     rules: {
       'i18n-text/no-en': 0
     }
