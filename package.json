@@ -33,15 +33,15 @@
     "@types/jsonwebtoken": "~9.0.0",
     "@types/luxon": "~1.27.0",
     "appstoreconnect": "github:orj/appstoreconnect#release/v0.3.0",
-    "jsonwebtoken": "~9.0.0",
+    "jsonwebtoken": "~9.0.3",
     "luxon": "~1.28.0"
   },
   "devDependencies": {
     "@types/node": "~24.10.0",
     "@vercel/ncc": "~0.38.0",
-    "eslint": "~9.39.0",
+    "eslint": "~9.39.2",
     "eslint-plugin-github": "~6.0.0",
-    "knip": "~5.71.0",
+    "knip": "~5.82.1",
     "prettier": "~3.7.0",
     "typescript": "~5.9.0"
   },
