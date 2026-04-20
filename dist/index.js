@@ -50271,7 +50271,12 @@ async function run() {
             if (!(profile.attributes.uuid && profile.attributes.profileContent)) {
                 throw new Error('Profile attributes `uuid` and `profileContent` must be defined!');
             }
-            const profileFileExtension = profile.attributes.platform === 'MAC_OS'
+            // `platform` can be undefined or `UNIVERSAL` (e.g. Mac Catalyst), so
+            // also fall back to `profileType` which covers MAC_APP_* and
+            // MAC_CATALYST_APP_*. See issue #53.
+            const isMacProfile = profile.attributes.platform === 'MAC_OS' ||
+                profile.attributes.profileType?.startsWith('MAC_');
+            const profileFileExtension = isMacProfile
                 ? 'provisionprofile'
                 : 'mobileprovision';
             const profileFilename = `${profile.attributes.uuid}.${profileFileExtension}`;
