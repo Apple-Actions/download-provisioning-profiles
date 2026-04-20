@@ -28,7 +28,7 @@
   "author": "Itty Bitty Apps Pty Ltd",
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "~1.11.0",
+    "@actions/core": "~2.0.3",
     "@actions/io": "~2.0.0",
     "appstore-connect-sdk": "~2.0.0"
   },
