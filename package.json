@@ -10,7 +10,7 @@
   "scripts": {
     "build": "tsc --noEmit",
     "format": "prettier --write src/",
-    "format-check": "prettier --check src/",
+    "format:check": "prettier --check src/",
     "knip": "knip",
     "lint": "eslint",
     "package": "esbuild src/main.ts --bundle --platform=node --target=node24 --format=esm --outfile=dist/index.js --banner:js=\"import{createRequire}from'node:module';const require=createRequire(import.meta.url);\"",
