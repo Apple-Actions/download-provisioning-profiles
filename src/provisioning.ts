@@ -6,7 +6,7 @@ import {
 
 type ProfileAttributes = NonNullable<Profile['attributes']>
 
-export type ActiveProfile = Profile & {attributes: ProfileAttributes}
+type ActiveProfile = Profile & {attributes: ProfileAttributes}
 
 function isActiveProfile(
   attributes: ProfileAttributes,
