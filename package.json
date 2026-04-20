@@ -3,17 +3,17 @@
   "version": "6.0.0",
   "private": true,
   "description": "GitHub Action for downloading provisioning profiles",
-  "main": "lib/main.js",
+  "type": "module",
   "engines": {
     "node": "24"
   },
   "scripts": {
-    "build": "tsc --outDir lib",
+    "build": "tsc --noEmit",
     "format": "prettier --write src/",
     "format-check": "prettier --check src/",
     "knip": "knip",
     "lint": "eslint",
-    "package": "ncc build --license licenses.txt",
+    "package": "esbuild src/main.ts --bundle --platform=node --target=node24 --format=esm --outfile=dist/index.js --banner:js=\"import{createRequire}from'node:module';const require=createRequire(import.meta.url);\"",
     "all": "yarn format && yarn knip && yarn lint && yarn build && yarn package"
   },
   "repository": {
@@ -28,18 +28,19 @@
   "author": "Itty Bitty Apps Pty Ltd",
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "~2.0.3",
-    "@actions/io": "~2.0.0",
+    "@actions/core": "~3.0.0",
+    "@actions/io": "~3.0.0",
     "appstore-connect-sdk": "~2.0.0"
   },
   "devDependencies": {
     "@types/node": "~24.12.0",
-    "@vercel/ncc": "~0.38.0",
+    "esbuild": "~0.28.0",
     "eslint": "~9.39.0",
+    "eslint-import-resolver-typescript": "~4.4.0",
     "eslint-plugin-github": "~6.0.0",
     "knip": "~5.82.0",
     "prettier": "~3.8.0",
-    "typescript": "~5.9.0"
+    "typescript": "~6.0.0"
   },
   "packageManager": "yarn@4.9.4"
 }
