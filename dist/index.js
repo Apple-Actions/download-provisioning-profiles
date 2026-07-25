@@ -86001,6 +86001,34 @@ async function downloadActiveProvisioningProfiles(privateKey, issuerId, privateK
 }
 
 // src/main.ts
+function formatError2(error48) {
+  if (error48 instanceof Error) {
+    return error48.message;
+  }
+  if (typeof error48 === "string") {
+    return error48;
+  }
+  if (error48 && typeof error48 === "object") {
+    const apiErrors = error48.errors;
+    if (Array.isArray(apiErrors) && apiErrors.length > 0) {
+      const details = apiErrors.map((item) => {
+        if (!item || typeof item !== "object") {
+          return String(item);
+        }
+        const { status, code, title, detail } = item;
+        const parts = [code, title, detail].filter(Boolean);
+        const message2 = parts.length > 0 ? parts.join(" - ") : JSON.stringify(item);
+        return status ? `${message2} (status: ${status})` : message2;
+      }).join("; ");
+      return `App Store Connect API error: ${details}`;
+    }
+    try {
+      return `Action failed with error ${JSON.stringify(error48)}`;
+    } catch {
+    }
+  }
+  return `Action failed with error ${String(error48)}`;
+}
 async function run() {
   try {
     const bundleId = getInput("bundle-id");
@@ -86048,11 +86076,7 @@ async function run() {
     });
     setOutput("profiles", JSON.stringify(outputProfiles));
   } catch (error48) {
-    if (error48 instanceof Error) {
-      setFailed(error48.message);
-    } else {
-      setFailed(`Action failed with error ${error48}`);
-    }
+    setFailed(formatError2(error48));
   }
 }
 run();
