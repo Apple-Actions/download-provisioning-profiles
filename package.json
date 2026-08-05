@@ -33,7 +33,7 @@
     "appstore-connect-sdk": "~2.0.0"
   },
   "devDependencies": {
-    "@types/node": "~25.9.1",
+    "@types/node": "~26.1.2",
     "esbuild": "~0.28.1",
     "eslint": "~10.8.0",
     "eslint-plugin-github": "~6.1.1",
