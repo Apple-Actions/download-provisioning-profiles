@@ -19,13 +19,14 @@ Ensure an App Store Connect bundle ID (App ID) exists.
 Usage:
   ./scripts/ensure-bundle-id.sh \
     --bundle-id com.example.App \
+    --name 'Example App' \
     --issuer-id 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx' \
     --api-key-id 'XXXXXXXXXX' \
     --api-private-key-path ~/Downloads/AuthKey_XXXXXXXXXX.p8
 
 Options:
   --bundle-id <id>              Bundle identifier (required)
-  --name <name>                 Display name (default: bundle id)
+  --name <name>                 Display name — alphanumeric and spaces only (required)
   --platform <platform>         IOS | MAC_OS | UNIVERSAL (default: IOS)
   --issuer-id <id>              App Store Connect issuer ID (required)
   --api-key-id <id>             App Store Connect API key ID (required)
@@ -55,7 +56,7 @@ if [[ "$HELP" -eq 1 ]]; then
 fi
 
 [[ -n "$BUNDLE_ID" ]] || asc_die "Missing required --bundle-id"
-[[ -n "$BUNDLE_NAME" ]] || BUNDLE_NAME="$BUNDLE_ID"
+[[ -n "$BUNDLE_NAME" ]] || asc_die "Missing required --name (alphanumeric and spaces only; not the reverse-DNS bundle id)"
 
 asc_require_cmds curl jq python3 openssl
 asc_load_credentials

@@ -71,14 +71,14 @@ gh variable set APPSTORE_API_KEY_ID --repo "$GITHUB_REPO" --body "$ASC_KEY_ID"
 echo "Setting APPSTORE_API_PRIVATE_KEY secret..."
 gh secret set APPSTORE_API_PRIVATE_KEY --repo "$GITHUB_REPO" --body "$ASC_PRIVATE_KEY_CONTENT"
 
-if [[ -n "$P12_PATH" ]]; then
+if [[ -n "$P12_PATH" || -n "$P12_PASSWORD" ]]; then
+  [[ -n "$P12_PATH" && -n "$P12_PASSWORD" ]] || \
+    asc_die "Pass both --p12-path and --p12-password, or neither"
   [[ -f "$P12_PATH" ]] || asc_die "p12 file not found: $P12_PATH"
+  [[ -n "$P12_PASSWORD" ]] || asc_die "--p12-password must not be empty"
   P12_BASE64="$(base64 <"$P12_PATH" | tr -d '\n')"
   echo "Setting APPSTORE_CERTIFICATES_FILE_BASE64 secret..."
   gh secret set APPSTORE_CERTIFICATES_FILE_BASE64 --repo "$GITHUB_REPO" --body "$P12_BASE64"
-fi
-
-if [[ -n "$P12_PASSWORD" ]]; then
   echo "Setting APPSTORE_CERTIFICATES_PASSWORD secret..."
   gh secret set APPSTORE_CERTIFICATES_PASSWORD --repo "$GITHUB_REPO" --body "$P12_PASSWORD"
 fi

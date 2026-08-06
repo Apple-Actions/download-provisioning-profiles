@@ -136,7 +136,7 @@ BUNDLE_RESOURCE_ID="$(
     '.data[] | select(.attributes.identifier == $bundleId) | .id' | head -n1
 )"
 [[ -n "$BUNDLE_RESOURCE_ID" && "$BUNDLE_RESOURCE_ID" != "null" ]] || \
-  asc_die "No App ID / bundle id '$BUNDLE_ID' on this team. Create it with ./scripts/ensure-bundle-id.sh (or in Certificates, Identifiers & Profiles → Identifiers)."
+  asc_die "No App ID / bundle id '$BUNDLE_ID' on this team. Create it with ./scripts/ensure-bundle-id.sh --bundle-id ... --name '...' (or in Certificates, Identifiers & Profiles → Identifiers)."
 
 echo "Checking for existing profile '$PROFILE_NAME'..."
 ENCODED_NAME="$(

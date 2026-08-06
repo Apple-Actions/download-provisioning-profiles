@@ -50,6 +50,7 @@ Creates/reuses bundle ID, distribution cert + `.p12`, App Store profile, `Export
 ```bash
 ./scripts/setup.sh \
   --bundle-id com.example.App \
+  --name 'Example App' \
   --issuer-id 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx' \
   --api-key-id 'XXXXXXXXXX' \
   --api-private-key-path ~/Downloads/AuthKey_XXXXXXXXXX.p8 \
@@ -58,12 +59,14 @@ Creates/reuses bundle ID, distribution cert + `.p12`, App Store profile, `Export
   --export-options ./ExportOptions.plist
 ```
 
-App + app extension (multiple bundle IDs):
+App + app extension (one `--name` per `--bundle-id`, in order):
 
 ```bash
 ./scripts/setup.sh \
   --bundle-id com.example.App \
+  --name 'Example App' \
   --bundle-id com.example.App.focus \
+  --name 'Example App Focus' \
   --issuer-id 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx' \
   --api-key-id 'XXXXXXXXXX' \
   --api-private-key-path ~/Downloads/AuthKey_XXXXXXXXXX.p8 \
@@ -89,12 +92,23 @@ Optional: `--name 'AppStore com.example.App'`, `--certificate-id <id>`, `--recre
 
 #### Create a signing certificate + `.p12`
 
+Exactly one of `--p12-password` or `--no-p12` is required:
+
 ```bash
 ./scripts/create-signing-certificate.sh \
   --issuer-id 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx' \
   --api-key-id 'XXXXXXXXXX' \
   --api-private-key-path ~/Downloads/AuthKey_XXXXXXXXXX.p8 \
   --p12-password 'choose-a-password' \
+  --output-dir ./signing
+```
+
+```bash
+./scripts/create-signing-certificate.sh \
+  --issuer-id 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx' \
+  --api-key-id 'XXXXXXXXXX' \
+  --api-private-key-path ~/Downloads/AuthKey_XXXXXXXXXX.p8 \
+  --no-p12 \
   --output-dir ./signing
 ```
 
@@ -129,6 +143,7 @@ Including signing certificate secrets:
 ```bash
 ./scripts/ensure-bundle-id.sh \
   --bundle-id com.example.App \
+  --name 'Example App' \
   --issuer-id 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx' \
   --api-key-id 'XXXXXXXXXX' \
   --api-private-key-path ~/Downloads/AuthKey_XXXXXXXXXX.p8

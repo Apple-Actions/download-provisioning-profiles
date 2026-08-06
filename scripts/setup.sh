@@ -8,6 +8,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$SCRIPT_DIR/lib/asc.sh"
 
 BUNDLE_IDS=()
+BUNDLE_NAMES=()
 PROFILE_TYPE="IOS_APP_STORE"
 OUTPUT_DIR="./signing"
 P12_PASSWORD=""
@@ -28,6 +29,7 @@ Prerequisites (portal, once):
 Usage:
   ./scripts/setup.sh \
     --bundle-id com.example.App \
+    --name 'Example App' \
     --issuer-id 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx' \
     --api-key-id 'XXXXXXXXXX' \
     --api-private-key-path ~/Downloads/AuthKey_XXXXXXXXXX.p8 \
@@ -36,6 +38,7 @@ Usage:
 
 Options:
   --bundle-id <id>              Bundle identifier (repeatable; required)
+  --name <name>                 App ID display name for each --bundle-id, in order (required; alphanumeric + spaces)
   --issuer-id <id>              App Store Connect issuer ID (required)
   --api-key-id <id>             App Store Connect API key ID (required)
   --api-private-key-path <p>    Path to AuthKey_*.p8 (required)
@@ -61,6 +64,7 @@ while [[ $# -gt 0 ]]; do
   case "$1" in
     -h|--help) HELP=1; shift ;;
     --bundle-id) BUNDLE_IDS+=("$2"); shift 2 ;;
+    --name) BUNDLE_NAMES+=("$2"); shift 2 ;;
     --profile-type) PROFILE_TYPE="$2"; shift 2 ;;
     --output-dir) OUTPUT_DIR="$2"; shift 2 ;;
     --p12-password) P12_PASSWORD="$2"; shift 2 ;;
@@ -81,6 +85,8 @@ if [[ "$HELP" -eq 1 ]]; then
 fi
 
 [[ ${#BUNDLE_IDS[@]} -gt 0 ]] || asc_die "Missing required --bundle-id"
+[[ ${#BUNDLE_NAMES[@]} -eq ${#BUNDLE_IDS[@]} ]] || \
+  asc_die "Pass one --name per --bundle-id (got ${#BUNDLE_IDS[@]} bundle id(s) and ${#BUNDLE_NAMES[@]} name(s))"
 if [[ "$SKIP_CERTIFICATE" -eq 0 && -z "$P12_PASSWORD" ]]; then
   asc_die "Missing --p12-password (or pass --skip-certificate)"
 fi
@@ -99,8 +105,13 @@ CRED_ARGS=(
 
 TEAM_ID=""
 echo "==> Ensuring bundle IDs"
-for bundle_id in "${BUNDLE_IDS[@]}"; do
-  result="$("$SCRIPT_DIR/ensure-bundle-id.sh" --bundle-id "$bundle_id" "${CRED_ARGS[@]}")"
+for i in "${!BUNDLE_IDS[@]}"; do
+  bundle_id="${BUNDLE_IDS[$i]}"
+  bundle_name="${BUNDLE_NAMES[$i]}"
+  result="$("$SCRIPT_DIR/ensure-bundle-id.sh" \
+    --bundle-id "$bundle_id" \
+    --name "$bundle_name" \
+    "${CRED_ARGS[@]}")"
   echo "$result"
   seed="$(tail -n1 <<<"$result" | awk '{print $2}')"
   if [[ -n "$seed" && -z "$TEAM_ID" ]]; then
@@ -108,7 +119,6 @@ for bundle_id in "${BUNDLE_IDS[@]}"; do
   fi
 done
 [[ -n "$TEAM_ID" ]] || asc_die "Could not determine Team ID (seedId) from bundle IDs."
-
 CERT_ID=""
 P12_PATH="$OUTPUT_DIR/IOS_DISTRIBUTION.p12"
 META_PATH="$OUTPUT_DIR/IOS_DISTRIBUTION.json"

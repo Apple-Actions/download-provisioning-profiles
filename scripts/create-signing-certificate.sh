@@ -15,7 +15,8 @@ CERTIFICATE_TYPE="IOS_DISTRIBUTION"
 OUTPUT_DIR="./signing"
 COMMON_NAME=""
 P12_PASSWORD=""
-CREATE_P12=0
+HAS_P12_PASSWORD=0
+HAS_NO_P12=0
 REUSE=0
 HELP=0
 
@@ -28,18 +29,24 @@ Usage:
     --issuer-id 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx' \
     --api-key-id 'XXXXXXXXXX' \
     --api-private-key-path ~/Downloads/AuthKey_XXXXXXXXXX.p8 \
-    [--p12-password '...']
+    --p12-password '...'
+
+  # Or skip .p12 export:
+  ./scripts/create-signing-certificate.sh ... --no-p12
 
 Options:
   --issuer-id <id>           App Store Connect issuer ID (required)
   --api-key-id <id>          App Store Connect API key ID (required)
   --api-private-key-path <p> Path to AuthKey_*.p8 (required)
+  --p12-password <password>  Export a .p12 with this password (required unless --no-p12)
+  --no-p12                   Do not export a .p12
   --certificate-type <type>  Default: IOS_DISTRIBUTION
   --output-dir <dir>         Where to write key/csr/cer/p12 (default: ./signing)
   --common-name <name>       CSR common name (default: based on certificate type)
-  --p12-password <password>  Also export a .p12 with this password
   --reuse                    Reuse existing key/cert in --output-dir if present
   -h, --help                 Show this help
+
+Exactly one of --p12-password or --no-p12 is required.
 
 Common certificate types:
   IOS_DISTRIBUTION, IOS_DEVELOPMENT, DISTRIBUTION, DEVELOPMENT,
@@ -55,7 +62,8 @@ while [[ $# -gt 0 ]]; do
     --certificate-type) CERTIFICATE_TYPE="$2"; shift 2 ;;
     --output-dir) OUTPUT_DIR="$2"; shift 2 ;;
     --common-name) COMMON_NAME="$2"; shift 2 ;;
-    --p12-password) P12_PASSWORD="$2"; CREATE_P12=1; shift 2 ;;
+    --p12-password) P12_PASSWORD="$2"; HAS_P12_PASSWORD=1; shift 2 ;;
+    --no-p12) HAS_NO_P12=1; shift ;;
     --reuse) REUSE=1; shift ;;
     --issuer-id) ASC_ISSUER_ID="$2"; shift 2 ;;
     --api-key-id) ASC_KEY_ID="$2"; shift 2 ;;
@@ -68,6 +76,17 @@ if [[ "$HELP" -eq 1 ]]; then
   usage
   exit 0
 fi
+
+if [[ "$HAS_P12_PASSWORD" -eq 1 && "$HAS_NO_P12" -eq 1 ]]; then
+  asc_die "Pass either --p12-password or --no-p12, not both"
+fi
+if [[ "$HAS_P12_PASSWORD" -eq 0 && "$HAS_NO_P12" -eq 0 ]]; then
+  asc_die "Specify --p12-password <password> or --no-p12"
+fi
+if [[ "$HAS_P12_PASSWORD" -eq 1 && -z "$P12_PASSWORD" ]]; then
+  asc_die "--p12-password must not be empty"
+fi
+WANT_P12=$HAS_P12_PASSWORD
 
 asc_require_cmds curl jq openssl python3
 asc_load_credentials
@@ -85,10 +104,10 @@ P12_PATH="$OUTPUT_DIR/${CERTIFICATE_TYPE}.p12"
 META_PATH="$OUTPUT_DIR/${CERTIFICATE_TYPE}.json"
 
 export_p12_if_requested() {
-  if [[ "$CREATE_P12" -ne 1 ]]; then
+  if [[ "$WANT_P12" -ne 1 ]]; then
+    echo "Skipping .p12 export (--no-p12)."
     return
   fi
-  [[ -n "$P12_PASSWORD" ]] || asc_die "--p12-password must not be empty."
   [[ -f "$KEY_PATH" && -f "$PEM_PATH" ]] || asc_die "Missing key/pem required to export p12."
   openssl pkcs12 -export \
     -inkey "$KEY_PATH" \
