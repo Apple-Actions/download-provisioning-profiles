@@ -86128,6 +86128,11 @@ async function run() {
     if (!process.env.HOME) {
       throw new Error("Environment variable `HOME` is not defined!");
     }
+    const profilesDir = join(
+      process.env["HOME"],
+      "Library/Developer/Xcode/UserData/Provisioning Profiles"
+    );
+    await mkdirP(profilesDir);
     for (const profile of profiles) {
       if (!(profile.attributes.uuid && profile.attributes.profileContent)) {
         throw new Error(
@@ -86137,13 +86142,8 @@ async function run() {
       const isMacProfile = profile.attributes.platform === "MAC_OS" || profile.attributes.profileType?.startsWith("MAC_");
       const profileFileExtension = isMacProfile ? "provisionprofile" : "mobileprovision";
       const profileFilename = `${profile.attributes.uuid}.${profileFileExtension}`;
-      const basePath = join(
-        process.env["HOME"],
-        "/Library/MobileDevice/Provisioning Profiles"
-      );
-      await mkdirP(basePath);
       const buffer = Buffer.from(profile.attributes.profileContent, "base64");
-      const fullPath = join(basePath, profileFilename);
+      const fullPath = join(profilesDir, profileFilename);
       writeFileSync(fullPath, buffer);
       info(
         `Wrote ${profile.attributes.profileType} profile '${profile.attributes.name}' to '${fullPath}'.`

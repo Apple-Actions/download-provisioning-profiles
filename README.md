@@ -161,7 +161,7 @@ Including signing certificate secrets:
 
 ```yaml
 - name: Download Provisioning Profiles
-  uses: apple-actions/download-provisioning-profiles@v6
+  uses: apple-actions/download-provisioning-profiles@v7
   with:
     bundle-id: 'com.example.App'
     profile-type: 'IOS_APP_STORE'
@@ -169,6 +169,26 @@ Including signing certificate secrets:
     api-key-id: ${{ vars.APPSTORE_API_KEY_ID }}
     api-private-key: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
 ```
+
+`profile-type` is optional. When omitted, every ACTIVE profile for the bundle ID is downloaded. For example, a macOS app that ships to the Mac App Store and with Developer ID can get both `MAC_APP_STORE` and `MAC_APP_DIRECT` profiles in one step:
+
+```yaml
+- name: Download Provisioning Profiles
+  uses: apple-actions/download-provisioning-profiles@v7
+  with:
+    bundle-id: 'com.example.MacApp'
+    issuer-id: ${{ vars.APPSTORE_ISSUER_ID }}
+    api-key-id: ${{ vars.APPSTORE_API_KEY_ID }}
+    api-private-key: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
+```
+
+## Install location
+
+Profiles are written to `~/Library/Developer/Xcode/UserData/Provisioning Profiles` as `<uuid>.mobileprovision` (iOS, tvOS) or `<uuid>.provisionprofile` (macOS). This is the folder Xcode 16 and later use, so Xcode 16 or later is required.
+
+### Upgrading from v6
+
+v6 wrote profiles to `~/Library/MobileDevice/Provisioning Profiles`. If you build with Xcode 15 or earlier, or have scripts or tools that read that path, either stay on `@v6` or update them to the new folder.
 
 ## Additional Arguments
 
