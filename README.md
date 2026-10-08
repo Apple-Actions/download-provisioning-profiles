@@ -170,17 +170,43 @@ Including signing certificate secrets:
     api-private-key: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
 ```
 
-`profile-type` is optional. When omitted, every ACTIVE profile for the bundle ID is downloaded. For example, a macOS app that ships to the Mac App Store and with Developer ID can get both `MAC_APP_STORE` and `MAC_APP_DIRECT` profiles in one step:
+`profile-type` is optional. When omitted, every ACTIVE profile for the bundle ID is downloaded.
+
+## macOS: App Store and Developer ID
+
+A macOS app that ships to TestFlight / the Mac App Store and as a notarized Developer ID DMG needs a `MAC_APP_STORE` and a `MAC_APP_DIRECT` profile. Omit `profile-type` to get both in one step:
 
 ```yaml
 - name: Download Provisioning Profiles
+  id: profiles
   uses: apple-actions/download-provisioning-profiles@v7
   with:
-    bundle-id: 'com.example.MacApp'
+    bundle-id: 'com.example.app'
     issuer-id: ${{ vars.APPSTORE_ISSUER_ID }}
     api-key-id: ${{ vars.APPSTORE_API_KEY_ID }}
     api-private-key: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
 ```
+
+Check the `profiles` output so a missing profile fails here rather than later at export:
+
+```yaml
+- name: Check provisioning profiles
+  env:
+    PROFILES: ${{ steps.profiles.outputs.profiles }}
+  run: |
+    for name in "AppStore com.example.app" "DeveloperID com.example.app"; do
+      jq -e --arg name "$name" 'any(.[]; .name == $name)' <<<"$PROFILES" >/dev/null \
+        || { echo "::error::No ACTIVE provisioning profile \"$name\""; exit 1; }
+    done
+```
+
+Prerequisites:
+
+* This action only downloads profiles. The `MAC_APP_DIRECT` profile must already exist.
+* That profile needs a Developer ID Application certificate, and Apple lets only the Account Holder create one. For any other key, the App Store Connect API returns 403 `FORBIDDEN_ERROR` ("This operation can only be performed by the Account Holder"). Once the certificate exists, an Admin API key can create the profile.
+* A profile turns INVALID when its certificate is revoked, and this action skips non-ACTIVE profiles. Recreate the profiles after certificate changes.
+
+Export the archive with both profiles using [`xcodebuild`](https://github.com/Apple-Actions/xcodebuild#macos-mac-app-store-and-developer-id-from-one-archive), and import all signing identities from one `.p12` with [`import-codesign-certs`](https://github.com/Apple-Actions/import-codesign-certs). See [`Apple-Actions/Example-macOS`](https://github.com/Apple-Actions/Example-macOS) for the full workflow, including [`upload-testflight-build`](https://github.com/Apple-Actions/upload-testflight-build) and [`notarize`](https://github.com/Apple-Actions/notarize).
 
 ## Install location
 
@@ -196,7 +222,7 @@ See [action.yml](action.yml) for more details.
 
 ## Outputs
 
-The action outputs an array of JSON objects to the action output named `profiles`. You can access and manipulate this data using [workflow expressions](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/contexts-and-expression-syntax-for-github-actions#steps-context).
+The action outputs an array of JSON objects, each with the profile's `name` and `type` among other fields, to the action output named `profiles`. You can access and manipulate this data using [workflow expressions](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/contexts-and-expression-syntax-for-github-actions#steps-context).
 
 ## Contributing
 
