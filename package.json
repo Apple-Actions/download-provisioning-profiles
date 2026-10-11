@@ -1,6 +1,6 @@
 {
   "name": "download-provisioning-profiles",
-  "version": "6.0.0",
+  "version": "7.0.0",
   "private": true,
   "description": "GitHub Action for downloading provisioning profiles",
   "main": "src/main.ts",
@@ -37,8 +37,8 @@
     "esbuild": "~0.28.2",
     "eslint": "~10.11.0",
     "eslint-plugin-github": "~6.1.2",
-    "knip": "~6.33.0",
-    "prettier": "~3.9.4",
+    "knip": "~6.38.0",
+    "prettier": "~3.9.9",
     "typescript": "~6.0.0"
   },
   "packageManager": "yarn@4.14.1"
