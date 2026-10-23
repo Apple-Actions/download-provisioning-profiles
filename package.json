@@ -13,8 +13,9 @@
     "format:check": "prettier --check src/",
     "knip": "knip",
     "lint": "eslint",
+    "test": "vitest run",
     "type:check": "tsc --noEmit",
-    "all": "yarn format && yarn knip && yarn lint && yarn type:check && yarn build"
+    "all": "yarn format && yarn knip && yarn lint && yarn type:check && yarn test && yarn build"
   },
   "repository": {
     "type": "git",
@@ -39,7 +40,9 @@
     "eslint-plugin-github": "~6.1.2",
     "knip": "~6.39.0",
     "prettier": "~3.9.9",
-    "typescript": "~6.0.0"
+    "typescript": "~6.0.0",
+    "vite": "~8.3.3",
+    "vitest": "~5.0.2"
   },
   "packageManager": "yarn@4.14.1"
 }

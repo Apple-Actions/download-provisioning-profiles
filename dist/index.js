@@ -19598,6 +19598,45 @@ function info(message2) {
 import { writeFileSync } from "node:fs";
 import { join } from "node:path";
 
+// src/errors.ts
+function formatError(error48) {
+  if (error48 instanceof Error) {
+    return error48.message;
+  }
+  if (typeof error48 === "string") {
+    return error48;
+  }
+  if (error48 && typeof error48 === "object") {
+    const apiErrors = error48.errors;
+    if (Array.isArray(apiErrors) && apiErrors.length > 0) {
+      const details = apiErrors.map((item) => {
+        if (!item || typeof item !== "object") {
+          return String(item);
+        }
+        const { status, code, title, detail } = item;
+        const parts = [code, title, detail].filter(Boolean);
+        const message2 = parts.length > 0 ? parts.join(" - ") : JSON.stringify(item);
+        return status ? `${message2} (status: ${status})` : message2;
+      }).join("; ");
+      return `App Store Connect API error: ${details}`;
+    }
+    try {
+      return `Action failed with error ${JSON.stringify(error48)}`;
+    } catch {
+    }
+  }
+  return `Action failed with error ${String(error48)}`;
+}
+
+// src/profile-filename.ts
+function isMacProfile(attributes) {
+  return attributes.platform === "MAC_OS" || (attributes.profileType?.startsWith("MAC_") ?? false);
+}
+function profileFilename(uuid3, attributes) {
+  const extension = isMacProfile(attributes) ? "provisionprofile" : "mobileprovision";
+  return `${uuid3}.${extension}`;
+}
+
 // node_modules/appstore-connect-sdk/dist/main.js
 var __defProp2 = Object.defineProperty;
 var __export = (target, all) => {
@@ -21735,7 +21774,7 @@ __export(external_exports, {
   flattenError: () => flattenError,
   float32: () => float32,
   float64: () => float64,
-  formatError: () => formatError,
+  formatError: () => formatError2,
   fromJSONSchema: () => fromJSONSchema,
   function: () => _function,
   getErrorMap: () => getErrorMap,
@@ -22102,7 +22141,7 @@ __export(core_exports2, {
   extractDefs: () => extractDefs,
   finalize: () => finalize,
   flattenError: () => flattenError,
-  formatError: () => formatError,
+  formatError: () => formatError2,
   globalConfig: () => globalConfig,
   globalRegistry: () => globalRegistry,
   initializeContext: () => initializeContext,
@@ -22910,7 +22949,7 @@ function flattenError(error48, mapper = (issue22) => issue22.message) {
   }
   return { formErrors, fieldErrors };
 }
-function formatError(error48, mapper = (issue22) => issue22.message) {
+function formatError2(error48, mapper = (issue22) => issue22.message) {
   const fieldErrors = { _errors: [] };
   const processError = (error49) => {
     for (const issue22 of error49.issues) {
@@ -33586,7 +33625,7 @@ var initializer2 = (inst, issues) => {
   inst.name = "ZodError";
   Object.defineProperties(inst, {
     format: {
-      value: (mapper) => formatError(inst, mapper)
+      value: (mapper) => formatError2(inst, mapper)
       // enumerable: false,
     },
     flatten: {
@@ -86314,34 +86353,6 @@ async function downloadActiveProvisioningProfiles(privateKey, issuerId, privateK
 }
 
 // src/main.ts
-function formatError2(error48) {
-  if (error48 instanceof Error) {
-    return error48.message;
-  }
-  if (typeof error48 === "string") {
-    return error48;
-  }
-  if (error48 && typeof error48 === "object") {
-    const apiErrors = error48.errors;
-    if (Array.isArray(apiErrors) && apiErrors.length > 0) {
-      const details = apiErrors.map((item) => {
-        if (!item || typeof item !== "object") {
-          return String(item);
-        }
-        const { status, code, title, detail } = item;
-        const parts = [code, title, detail].filter(Boolean);
-        const message2 = parts.length > 0 ? parts.join(" - ") : JSON.stringify(item);
-        return status ? `${message2} (status: ${status})` : message2;
-      }).join("; ");
-      return `App Store Connect API error: ${details}`;
-    }
-    try {
-      return `Action failed with error ${JSON.stringify(error48)}`;
-    } catch {
-    }
-  }
-  return `Action failed with error ${String(error48)}`;
-}
 async function run() {
   try {
     const bundleId = getInput("bundle-id");
@@ -86370,11 +86381,12 @@ async function run() {
           "Profile attributes `uuid` and `profileContent` must be defined!"
         );
       }
-      const isMacProfile = profile.attributes.platform === "MAC_OS" || profile.attributes.profileType?.startsWith("MAC_");
-      const profileFileExtension = isMacProfile ? "provisionprofile" : "mobileprovision";
-      const profileFilename = `${profile.attributes.uuid}.${profileFileExtension}`;
+      const filename = profileFilename(
+        profile.attributes.uuid,
+        profile.attributes
+      );
       const buffer = Buffer.from(profile.attributes.profileContent, "base64");
-      const fullPath = join(profilesDir, profileFilename);
+      const fullPath = join(profilesDir, filename);
       writeFileSync(fullPath, buffer);
       info(
         `Wrote ${profile.attributes.profileType} profile '${profile.attributes.name}' to '${fullPath}'.`
@@ -86389,7 +86401,7 @@ async function run() {
     });
     setOutput("profiles", JSON.stringify(outputProfiles));
   } catch (error48) {
-    setFailed(formatError2(error48));
+    setFailed(formatError(error48));
   }
 }
 run();
