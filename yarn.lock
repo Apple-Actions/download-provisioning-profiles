@@ -956,13 +956,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"appstore-connect-sdk@npm:~2.0.0":
-  version: 2.0.0
-  resolution: "appstore-connect-sdk@npm:2.0.0"
+"appstore-connect-sdk@npm:~2.4.1":
+  version: 2.4.1
+  resolution: "appstore-connect-sdk@npm:2.4.1"
   dependencies:
     jose: "npm:^6.1.3"
     zod: "npm:^4.3.5"
-  checksum: 10c0/0b16a4acf8b76eac6b2b8416e3e31f3b7d87e146b59878dac6283be24fc7c416a141c45f561126b2404639df45139601a7317f83a3729cf72e7a9f3e1edc20c7
+  checksum: 10c0/ba1ba5cc7a6d98b55b8f6309e209afe026c6a19b62fd9bcaccace254feaa411d2c32194dc81dd581889bc5da0ffb25f6a0cc79a30db6b0421cda3823e6e4d26d
   languageName: node
   linkType: hard
 
@@ -1344,7 +1344,7 @@ __metadata:
     "@actions/core": "npm:~3.0.1"
     "@actions/io": "npm:~3.0.0"
     "@types/node": "npm:~24.19.1"
-    appstore-connect-sdk: "npm:~2.0.0"
+    appstore-connect-sdk: "npm:~2.4.1"
     esbuild: "npm:~0.28.2"
     eslint: "npm:~10.11.0"
     eslint-plugin-github: "npm:~6.1.2"
