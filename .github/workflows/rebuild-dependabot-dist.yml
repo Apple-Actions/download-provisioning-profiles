@@ -40,6 +40,7 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           ref: ${{ inputs.branch || github.ref_name }}
+          persist-credentials: false
 
       - name: Enable corepack (workaround)
         run: corepack enable
@@ -63,6 +64,8 @@ jobs:
         id: commit
         env:
           BRANCH: ${{ inputs.branch || github.ref_name }}
+          GH_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
         run: |
           set -euo pipefail
           if [ "$(git diff --ignore-space-at-eol dist/ | wc -l)" -eq 0 ]; then
@@ -74,7 +77,8 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add dist/
           git commit -m "[dependabot skip] Rebuild dist/ for dependency bump"
-          git push origin "HEAD:refs/heads/${BRANCH}"
+          remote="https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git push "${remote}" "HEAD:refs/heads/${BRANCH}"
           echo "committed=true" >> "$GITHUB_OUTPUT"
 
       # Pushes with GITHUB_TOKEN do not trigger on: push workflows; dispatch
