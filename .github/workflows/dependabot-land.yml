@@ -76,14 +76,33 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           REPO: ${{ github.repository }}
+          # Branch-protection required check-run names (github-actions app).
+          REQUIRED_CHECKS_JSON: '["check-dist","test","eslint","knip","prettier","actionlint","zizmor"]'
         run: |
           set -euo pipefail
-          # Candidates: open, non-draft, by Dependabot, at least one check,
-          # every check SUCCESS/NEUTRAL/SKIPPED. Skip github-actions bumps —
+          # Candidates: open, non-draft, by Dependabot, every required head
+          # check-run SUCCESS/NEUTRAL/SKIPPED. Use commit check-runs (not PR
+          # statusCheckRollup): workflow_dispatch CI after a GITHUB_TOKEN dist
+          # rebuild does not populate the rollup. Skip github-actions bumps —
           # github.token cannot push commits that touch .github/workflows/.
+          head_checks_green() {
+            local sha="$1"
+            gh api --paginate "repos/${REPO}/commits/${sha}/check-runs" \
+              --jq '.check_runs[]' \
+              | jq -s --argjson req "$REQUIRED_CHECKS_JSON" '
+                  group_by(.name)
+                  | map({
+                      name: .[0].name,
+                      conclusion: (sort_by(.started_at // "") | last | .conclusion // "")
+                    })
+                  | INDEX(.name) as $by
+                  | all($req[]; ($by[.].conclusion) | IN("success","neutral","skipped"))
+                '
+          }
+
           : > /tmp/dependabot-prs.tsv
           : > /tmp/dependabot-skipped-actions.txt
-          while IFS=$'\t' read -r num head title; do
+          while IFS=$'\t' read -r num head title sha; do
             if [[ "$head" == dependabot/github_actions/* ]]; then
               echo "$num" >> /tmp/dependabot-skipped-actions.txt
               echo "Skipping #$num (Actions bump; needs a human or a workflow-scoped token)."
@@ -95,15 +114,16 @@ jobs:
               echo "Skipping #$num (touches .github/workflows/)."
               continue
             fi
+            if [[ "$(head_checks_green "$sha")" != "true" ]]; then
+              echo "Skipping #$num (required head check-runs not all green on ${sha:0:7})."
+              continue
+            fi
             printf '%s\t%s\t%s\n' "$num" "$head" "$title" >> /tmp/dependabot-prs.tsv
           done < <(
             gh pr list --repo "$REPO" --author "app/dependabot" --state open --limit 50 \
-              --json number,headRefName,title,isDraft,statusCheckRollup \
+              --json number,headRefName,title,isDraft,headRefOid \
               --jq '.[] | select(.isDraft | not)
-                        | select((.statusCheckRollup | length) > 0)
-                        | select(all(.statusCheckRollup[];
-                            (.conclusion // .state) | IN("SUCCESS","NEUTRAL","SKIPPED")))
-                        | [.number, .headRefName, .title] | @tsv' \
+                        | [.number, .headRefName, .title, .headRefOid] | @tsv' \
               | sort -n
           )
           if [ ! -s /tmp/dependabot-prs.tsv ]; then
