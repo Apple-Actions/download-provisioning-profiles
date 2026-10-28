@@ -1,7 +1,7 @@
 # Dependabot only updates package.json / the lockfile. For this Action the
 # production bundle lives in dist/, so npm bumps fail check-dist until dist/ is
-# rebuilt. This workflow commits the rebuild, then workflow_dispatches CI —
-# GITHUB_TOKEN pushes do not re-fire on: push workflows.
+# rebuilt. Push the rebuild with DEPENDABOT_DIST_TOKEN (fine-grained PAT) so
+# on: push CI re-fires and branch protection / dependabot-land can merge.
 name: Rebuild Dependabot dist
 
 run-name: Rebuild Dependabot dist
@@ -18,8 +18,7 @@ on:
         type: string
 
 permissions:
-  contents: write
-  actions: write
+  contents: read
 
 concurrency:
   group: rebuild-dependabot-dist-${{ github.event.inputs.branch || github.ref }}
@@ -64,7 +63,7 @@ jobs:
         id: commit
         env:
           BRANCH: ${{ inputs.branch || github.ref_name }}
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.DEPENDABOT_DIST_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
         run: |
           set -euo pipefail
@@ -73,6 +72,10 @@ jobs:
             echo "committed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
+          if [ -z "${GH_TOKEN}" ]; then
+            echo "::error::DEPENDABOT_DIST_TOKEN secret is missing; cannot push rebuilt dist/."
+            exit 1
+          fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add dist/
@@ -80,26 +83,3 @@ jobs:
           remote="https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
           git push "${remote}" "HEAD:refs/heads/${BRANCH}"
           echo "committed=true" >> "$GITHUB_OUTPUT"
-
-      # Pushes with GITHUB_TOKEN do not trigger on: push workflows; dispatch
-      # required checks onto the new head so branch protection / dependabot-land
-      # can see green status on that SHA.
-      - name: Dispatch CI on new head
-        if: steps.commit.outputs.committed == 'true'
-        env:
-          GH_TOKEN: ${{ github.token }}
-          BRANCH: ${{ inputs.branch || github.ref_name }}
-          REPO: ${{ github.repository }}
-        run: |
-          set -euo pipefail
-          for workflow in \
-            check-dist.yml \
-            test.yml \
-            eslint.yml \
-            knip.yml \
-            prettier.yml \
-            lint-workflows.yml
-          do
-            gh workflow run "$workflow" --repo "$REPO" --ref "$BRANCH"
-            echo "Dispatched $workflow on $BRANCH"
-          done
