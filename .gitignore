@@ -98,9 +98,5 @@ typings/
 .DS_Store
 Thumbs.db
 
-# Ignore built ts files
-__tests__/runner/*
-lib/**/*
-
 # Local signing material from helper scripts
 signing/

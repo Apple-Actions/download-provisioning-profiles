@@ -76,42 +76,22 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           REPO: ${{ github.repository }}
-          # Branch-protection required check-run names (github-actions app).
-          REQUIRED_CHECKS_JSON: '["check-dist","test","eslint","knip","prettier","actionlint","zizmor"]'
         run: |
           set -euo pipefail
-          # Candidates: open, non-draft, by Dependabot, every required head
-          # check-run SUCCESS/NEUTRAL/SKIPPED. Use commit check-runs (not PR
-          # statusCheckRollup): workflow_dispatch CI after a GITHUB_TOKEN dist
-          # rebuild does not populate the rollup. Includes Actions/workflow bumps
+          # Candidates: open, non-draft, by Dependabot, at least one check,
+          # every check SUCCESS/NEUTRAL/SKIPPED. Includes Actions/workflow bumps
           # (landed via gh pr merge, not a GITHUB_TOKEN push of workflow files).
-          head_checks_green() {
-            local sha="$1"
-            gh api --paginate "repos/${REPO}/commits/${sha}/check-runs" \
-              --jq '.check_runs[]' \
-              | jq -s --argjson req "$REQUIRED_CHECKS_JSON" '
-                  group_by(.name)
-                  | map({
-                      name: .[0].name,
-                      conclusion: (sort_by(.started_at // "") | last | .conclusion // "")
-                    })
-                  | INDEX(.name) as $by
-                  | all($req[]; ($by[.].conclusion) | IN("success","neutral","skipped"))
-                '
-          }
-
           : > /tmp/dependabot-prs.tsv
-          while IFS=$'\t' read -r num head title sha; do
-            if [[ "$(head_checks_green "$sha")" != "true" ]]; then
-              echo "Skipping #$num (required head check-runs not all green on ${sha:0:7})."
-              continue
-            fi
+          while IFS=$'\t' read -r num head title; do
             printf '%s\t%s\t%s\n' "$num" "$head" "$title" >> /tmp/dependabot-prs.tsv
           done < <(
             gh pr list --repo "$REPO" --author "app/dependabot" --state open --limit 50 \
-              --json number,headRefName,title,isDraft,headRefOid \
+              --json number,headRefName,title,isDraft,statusCheckRollup \
               --jq '.[] | select(.isDraft | not)
-                        | [.number, .headRefName, .title, .headRefOid] | @tsv' \
+                        | select((.statusCheckRollup | length) > 0)
+                        | select(all(.statusCheckRollup[];
+                            (.conclusion // .state) | IN("SUCCESS","NEUTRAL","SKIPPED")))
+                        | [.number, .headRefName, .title] | @tsv' \
               | sort -n
           )
           if [ ! -s /tmp/dependabot-prs.tsv ]; then
@@ -128,7 +108,7 @@ jobs:
 
       - name: Setup Node
         if: steps.debounce.outputs.skip != 'true' && steps.list.outputs.empty != 'true'
-        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version-file: package.json
 
