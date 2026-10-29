@@ -18357,9 +18357,9 @@ var require_eventsource_stream = __commonJS({
       return true;
     }
     function createMaxEventSizeExceededError() {
-      const error48 = new Error("EventSource message size exceeded");
-      error48.aborted = false;
-      return error48;
+      const error3 = new Error("EventSource message size exceeded");
+      error3.aborted = false;
+      return error3;
     }
     var EventSourceStream = class extends Transform {
       /**
@@ -18471,8 +18471,8 @@ var require_eventsource_stream = __commonJS({
             }
             try {
               this.parseLine(this.readLine(), this.event);
-            } catch (error48) {
-              callback(error48);
+            } catch (error3) {
+              callback(error3);
               return;
             }
             this.consumeCurrentByte();
@@ -18487,10 +18487,10 @@ var require_eventsource_stream = __commonJS({
         }
         callback();
       }
-      _destroy(error48, callback) {
+      _destroy(error3, callback) {
         this.chunks.length = 0;
         this.clearEvent();
-        super._destroy(error48, callback);
+        super._destroy(error3, callback);
       }
       /**
        * @param {Buffer} line
